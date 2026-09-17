@@ -28,48 +28,48 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            position: relative; /* Necessário para conter as bolhas no topo */
+            position: relative;
         }
 
         /* 🎨 PALETA DE CORES DA SUA IMAGEM */
         .bloco-topo {
-            background-color: #A254F2;
+            background-color: #A254F2; /* Roxo do Topo */
             color: white;
-            overflow: hidden; /* Garante que as bolhas sumam ao sair do bloco roxo */
+            overflow: hidden;
         }
 
         .bloco-sabao {
-            background-color: #FFD043;
+            background-color: #FFD043; /* Amarelo */
             color: #222;
         }
 
         .bloco-amaciante {
-            background-color: #1A8FE3;
+            background-color: #1A8FE3; /* Azul Escuro */
             color: white;
         }
 
         .bloco-brilho {
-            background-color: #00A877;
+            background-color: #00A877; /* Verde */
             color: white;
         }
 
         .bloco-detergente {
-            background-color: #4CC9F0;
+            background-color: #4CC9F0; /* Azul Claro */
             color: #222;
         }
 
         .bloco-desinfetante {
-            background-color: #1A8FE3;
+            background-color: #1A8FE3; /* Azul Escuro */
             color: white;
         }
 
         .bloco-alcool {
-            background-color: #A254F2;
+            background-color: #A254F2; /* Roxo */
             color: white;
         }
 
         .bloco-rodape {
-            background-color: #923DF2;
+            background-color: #923DF2; /* Roxo do Rodapé */
             color: white;
         }
 
@@ -78,14 +78,16 @@
             font-size: 2.8rem;
             margin-bottom: 20px;
             font-weight: bold;
-            z-index: 2; /* Garante que o texto fique na frente das bolhas */
+            position: relative;
+            z-index: 10; /* Texto sempre na frente das bolhas */
         }
 
         .titulo-principal {
             font-size: 3.5rem;
             font-style: italic;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            z-index: 2;
+            position: relative;
+            z-index: 10;
         }
 
         p {
@@ -93,7 +95,8 @@
             max-width: 600px;
             line-height: 1.6;
             margin-bottom: 15px;
-            z-index: 2;
+            position: relative;
+            z-index: 10;
         }
 
         /* Imagens */
@@ -111,7 +114,8 @@
             align-items: center;
             gap: 5px;
             margin-top: 30px;
-            z-index: 2;
+            position: relative;
+            z-index: 10;
         }
 
         .seta-svg {
@@ -134,34 +138,40 @@
             50% { opacity: 1; transform: translateY(5px); }
         }
 
-        /* 🧼 EFEITO REALISTA DE BOLHAS DE SABÃO (CSS) */
+        /* 🧼 NOVAS BOLHAS DE SABÃO SUPER REALISTAS */
         .bolha {
             position: absolute;
-            bottom: -60px; /* Começa logo abaixo do bloco roxo */
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 40%, rgba(255, 100, 255, 0.2) 60%, rgba(0, 200, 255, 0.2) 80%, rgba(255, 255, 255, 0) 100%);
+            bottom: -50px;
             border-radius: 50%;
-            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5), inset -3px -3px 8px rgba(0, 150, 255, 0.2), 0 2px 10px rgba(255, 255, 255, 0.1);
+            /* Mistura de cores transparentes para o efeito arco-íris de sabão */
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 255, 255, 0.6) 0%, 
+                rgba(255, 255, 255, 0.2) 20%, 
+                rgba(255, 0, 255, 0.15) 50%, 
+                rgba(0, 255, 255, 0.15) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6), 
+                        0 2px 10px rgba(255, 255, 255, 0.2);
             animation: subirBolha infinite linear;
-            pointer-events: none; /* Não atrapalha os cliques do usuário */
-            z-index: 1;
+            pointer-events: none;
+            z-index: 5; /* Fica acima do fundo e abaixo ou misturado com o texto */
         }
 
-        /* Brilho reflexivo realista dentro da bolha */
-        .bolha::after {
+        /* Brilho interno reflexivo */
+        .bolha::before {
             content: '';
             position: absolute;
-            top: 15%;
-            left: 15%;
-            width: 20%;
-            height: 20%;
-            background: rgba(255, 255, 255, 0.7);
+            top: 12%;
+            left: 12%;
+            width: 25%;
+            height: 25%;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            filter: blur(1px);
         }
 
         @keyframes subirBolha {
             0% {
-                transform: translateY(0) translateX(0) scale(1);
+                transform: translateY(0) scale(1);
                 opacity: 0;
             }
             10% {
@@ -171,8 +181,8 @@
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(-105vh) translateX(var(--distancia-lateral)) scale(1.1);
-                opacity: 0; /* Estoura/some no topo do bloco */
+                transform: translateY(-110vh) scale(1.1);
+                opacity: 0;
             }
         }
 
@@ -216,7 +226,7 @@
 </head>
 <body>
 
-    <!-- 1️⃣ TOPO (ROXO) WITH BUBBLES -->
+    <!-- 1️⃣ TOPO (ROXO) COM AS BOLHAS CORRIGIDAS -->
     <section class="bloco-topo" id="topo-intro">
         <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
         <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
@@ -277,13 +287,9 @@
         <p><strong>Toque no botão verde flutuante para falar conosco no WhatsApp Business!</strong></p>
     </section>
 
-    <!-- 🟢 BOTÃO FLUTUANTE COM A LOGO OFICIAL DO WHATSAPP -->
+    <!-- 🟢 BOTÃO FLUTUANTE COM A LOGO OFICIAL -->
     <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
         <img src="https://wikimedia.org" alt="WhatsApp">
     </a>
 
-    <!-- ⚙️ SCRIPT PARA GERAR AS BOLHAS REALISTAS -->
-    <script>
-        function criarBolha() {
-            const topoSection = document.getElementById('topo-intro');
-            
+    
