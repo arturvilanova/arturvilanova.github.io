@@ -79,7 +79,7 @@
             margin-bottom: 20px;
             font-weight: bold;
             position: relative;
-            z-index: 10; /* Texto sempre na frente das bolhas */
+            z-index: 10; /* Mantém o texto bem visível */
         }
 
         .titulo-principal {
@@ -138,35 +138,14 @@
             50% { opacity: 1; transform: translateY(5px); }
         }
 
-        /* 🧼 NOVAS BOLHAS DE SABÃO SUPER REALISTAS */
+        /* 🧼 ANIMAÇÃO BASE DAS BOLHAS */
         .bolha {
             position: absolute;
-            bottom: -50px;
+            bottom: -100px; /* Começa escondida abaixo do bloco */
             border-radius: 50%;
-            /* Mistura de cores transparentes para o efeito arco-íris de sabão */
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(255, 255, 255, 0.6) 0%, 
-                rgba(255, 255, 255, 0.2) 20%, 
-                rgba(255, 0, 255, 0.15) 50%, 
-                rgba(0, 255, 255, 0.15) 70%, 
-                rgba(255, 255, 255, 0) 100%);
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6), 
-                        0 2px 10px rgba(255, 255, 255, 0.2);
-            animation: subirBolha infinite linear;
             pointer-events: none;
-            z-index: 5; /* Fica acima do fundo e abaixo ou misturado com o texto */
-        }
-
-        /* Brilho interno reflexivo */
-        .bolha::before {
-            content: '';
-            position: absolute;
-            top: 12%;
-            left: 12%;
-            width: 25%;
-            height: 25%;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
+            animation: subirBolha linear infinite;
+            z-index: 9999; /* Força a bolha a ficar na frente de tudo */
         }
 
         @keyframes subirBolha {
@@ -174,19 +153,19 @@
                 transform: translateY(0) scale(1);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
+            15% {
+                opacity: 0.85; /* Aparece suavemente */
             }
-            90% {
-                opacity: 0.8;
+            85% {
+                opacity: 0.85;
             }
             100% {
-                transform: translateY(-110vh) scale(1.1);
-                opacity: 0;
+                transform: translateY(-115vh) scale(1.2); /* Sobe ultrapassando a altura do topo */
+                opacity: 0; /* Estoura/some */
             }
         }
 
-        /* 🟢 BOTÃO FLUTUANTE */
+        /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP */
         .whatsapp-flutuante {
             position: fixed;
             bottom: 25px;
@@ -199,7 +178,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            z-index: 1000;
+            z-index: 10000; /* Acima até das bolhas */
             transition: transform 0.2s, background-color 0.2s;
         }
 
@@ -226,7 +205,7 @@
 </head>
 <body>
 
-    <!-- 1️⃣ TOPO (ROXO) COM AS BOLHAS CORRIGIDAS -->
+    <!-- 1️⃣ TOPO (ROXO) -->
     <section class="bloco-topo" id="topo-intro">
         <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
         <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
@@ -292,4 +271,22 @@
         <img src="https://wikimedia.org" alt="WhatsApp">
     </a>
 
-    
+    <!-- ⚙️ SCRIPT CORRIGIDO COM ESTILIZAÇÃO DIRETA -->
+    <script>
+        function criarBolha() {
+            const topoSection = document.getElementById('topo-intro');
+            if (!topoSection) return;
+
+            const bolha = document.createElement('div');
+            bolha.classList.add('bolha');
+
+            // Tamanho totalmente aleatório (entre 18px e 55px)
+            const tamanho = Math.random() * 37 + 18;
+            bolha.style.width = `${tamanho}px`;
+            bolha.style.height = `${tamanho}px`;
+
+            // Posição de surgimento horizontal na tela (de 0% a 95%)
+            bolha.style.left = `${Math.random() * 95}%`;
+
+            // Velocidade lenta e suave (subida varia aleatoriamente entre 6s e 10s)
+        
