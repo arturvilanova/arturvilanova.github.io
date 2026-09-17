@@ -15,6 +15,7 @@
 
         body {
             background-color: #f4f4f4;
+            overflow-x: hidden;
         }
 
         /* Configuração de cada bloco da tela */
@@ -27,12 +28,14 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
+            position: relative; /* Necessário para conter as bolhas no topo */
         }
 
         /* 🎨 PALETA DE CORES DA SUA IMAGEM */
         .bloco-topo {
             background-color: #A254F2;
             color: white;
+            overflow: hidden; /* Garante que as bolhas sumam ao sair do bloco roxo */
         }
 
         .bloco-sabao {
@@ -75,12 +78,14 @@
             font-size: 2.8rem;
             margin-bottom: 20px;
             font-weight: bold;
+            z-index: 2; /* Garante que o texto fique na frente das bolhas */
         }
 
         .titulo-principal {
             font-size: 3.5rem;
             font-style: italic;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 2;
         }
 
         p {
@@ -88,6 +93,7 @@
             max-width: 600px;
             line-height: 1.6;
             margin-bottom: 15px;
+            z-index: 2;
         }
 
         /* Imagens */
@@ -105,6 +111,7 @@
             align-items: center;
             gap: 5px;
             margin-top: 30px;
+            z-index: 2;
         }
 
         .seta-svg {
@@ -118,27 +125,58 @@
             animation: deslizaSetas 1.5s infinite ease-in-out;
         }
 
-        /* Efeito de cascata nas setas (uma pisca depois da outra) */
         .seta-1 { animation-delay: 0s; }
         .seta-2 { animation-delay: 0.2s; }
         .seta-3 { animation-delay: 0.4s; }
 
         @keyframes deslizaSetas {
+            0%, 100% { opacity: 0.3; transform: translateY(-5px); }
+            50% { opacity: 1; transform: translateY(5px); }
+        }
+
+        /* 🧼 EFEITO REALISTA DE BOLHAS DE SABÃO (CSS) */
+        .bolha {
+            position: absolute;
+            bottom: -60px; /* Começa logo abaixo do bloco roxo */
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 40%, rgba(255, 100, 255, 0.2) 60%, rgba(0, 200, 255, 0.2) 80%, rgba(255, 255, 255, 0) 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5), inset -3px -3px 8px rgba(0, 150, 255, 0.2), 0 2px 10px rgba(255, 255, 255, 0.1);
+            animation: subirBolha infinite linear;
+            pointer-events: none; /* Não atrapalha os cliques do usuário */
+            z-index: 1;
+        }
+
+        /* Brilho reflexivo realista dentro da bolha */
+        .bolha::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 20%;
+            height: 20%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        @keyframes subirBolha {
             0% {
-                opacity: 0.3;
-                transform: translateY(-5px);
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
             }
-            50% {
-                opacity: 1;
-                transform: translateY(5px);
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
             }
             100% {
-                opacity: 0.3;
-                transform: translateY(-5px);
+                transform: translateY(-105vh) translateX(var(--distancia-lateral)) scale(1.1);
+                opacity: 0; /* Estoura/some no topo do bloco */
             }
         }
 
-        /* 🟢 BOTÃO FLUTUANTE 100% REDONDO NO CANTO INFERIOR DIREITO */
+        /* 🟢 BOTÃO FLUTUANTE */
         .whatsapp-flutuante {
             position: fixed;
             bottom: 25px;
@@ -160,7 +198,6 @@
             background-color: #20ba59;
         }
 
-        /* Estilo da Logo Oficial interna */
         .whatsapp-flutuante img {
             width: 38px;
             height: 38px;
@@ -172,27 +209,18 @@
             .titulo-principal { font-size: 2.5rem; }
             p { font-size: 1.1rem; }
             .img-produto { max-width: 180px; }
-            .whatsapp-flutuante {
-                width: 60px;
-                height: 60px;
-                bottom: 20px;
-                right: 20px;
-            }
-            .whatsapp-flutuante img {
-                width: 32px;
-                height: 32px;
-            }
+            .whatsapp-flutuante { width: 60px; height: 60px; bottom: 20px; right: 20px; }
+            .whatsapp-flutuante img { width: 32px; height: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1️⃣ TOPO (ROXO) -->
-    <section class="bloco-topo">
+    <!-- 1️⃣ TOPO (ROXO) WITH BUBBLES -->
+    <section class="bloco-topo" id="topo-intro">
         <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
         <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
         
-        <!-- 🧭 SETAS SVG ANIMADAS UMA EMBAIXO DA OUTRA -->
         <div class="container-setas">
             <svg class="seta-svg seta-1" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
             <svg class="seta-svg seta-2" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
@@ -250,10 +278,11 @@
     </section>
 
     <!-- 🟢 BOTÃO FLUTUANTE COM A LOGO OFICIAL DO WHATSAPP -->
-    <!-- Lembre-se de trocar o número 5500999999999 pelo seu número real -->
     <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
         <img src="https://wikimedia.org" alt="WhatsApp">
     </a>
 
-</body>
-</html>
+    <!-- ⚙️ SCRIPT PARA GERAR AS BOLHAS REALISTAS -->
+    <script>
+        function criarBolha() {
+            const topoSection = document.getElementById('topo-intro');
