@@ -79,7 +79,7 @@
             margin-bottom: 20px;
             font-weight: bold;
             position: relative;
-            z-index: 10; /* Mantém o texto bem visível */
+            z-index: 10;
         }
 
         .titulo-principal {
@@ -138,30 +138,54 @@
             50% { opacity: 1; transform: translateY(5px); }
         }
 
-        /* 🧼 ANIMAÇÃO BASE DAS BOLHAS */
-        .bolha {
+        /* 🧼 NOVAS BOLHAS REALISTAS USANDO APENAS CSS PURO */
+        .bolha-css {
             position: absolute;
-            bottom: -100px; /* Começa escondida abaixo do bloco */
+            bottom: -60px;
             border-radius: 50%;
-            pointer-events: none;
-            animation: subirBolha linear infinite;
-            z-index: 9999; /* Força a bolha a ficar na frente de tudo */
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 0, 255, 0.2) 60%, rgba(0, 255, 255, 0.2) 85%, rgba(255, 255, 255, 0) 100%);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6), 0 2px 5px rgba(255, 255, 255, 0.1);
+            animation: subirBolhaCSS infinite linear;
+            z-index: 5;
         }
 
-        @keyframes subirBolha {
+        /* Brilho interno realista da bolha */
+        .bolha-css::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 25%;
+            height: 25%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        /* Configuração de posições, tamanhos e atrasos individuais de cada bolha */
+        .b1 { left: 10%; width: 35px; height: 35px; animation-duration: 7s; animation-delay: 0s; }
+        .b2 { left: 25%; width: 20px; height: 20px; animation-duration: 5s; animation-delay: 1.5s; }
+        .b3 { left: 40%; width: 45px; height: 45px; animation-duration: 8s; animation-delay: 0.5s; }
+        .b4 { left: 55%; width: 25px; height: 25px; animation-duration: 6s; animation-delay: 2s; }
+        .b5 { left: 70%; width: 50px; height: 50px; animation-duration: 9s; animation-delay: 1s; }
+        .b6 { left: 85%; width: 30px; height: 30px; animation-duration: 7s; animation-delay: 3s; }
+        .b7 { left: 15%; width: 40px; height: 40px; animation-duration: 7.5s; animation-delay: 4s; }
+        .b8 { left: 65%; width: 22px; height: 22px; animation-duration: 5.5s; animation-delay: 3.5s; }
+
+        @keyframes subirBolhaCSS {
             0% {
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1) translateX(0);
                 opacity: 0;
             }
-            15% {
-                opacity: 0.85; /* Aparece suavemente */
+            10% {
+                opacity: 0.8;
             }
-            85% {
-                opacity: 0.85;
+            90% {
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-115vh) scale(1.2); /* Sobe ultrapassando a altura do topo */
-                opacity: 0; /* Estoura/some */
+                /* Sobe até o topo do bloco roxo balançando levemente para o lado */
+                transform: translateY(-110vh) scale(1.1) translateX(20px);
+                opacity: 0;
             }
         }
 
@@ -178,7 +202,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            z-index: 10000; /* Acima até das bolhas */
+            z-index: 10000;
             transition: transform 0.2s, background-color 0.2s;
         }
 
@@ -205,8 +229,8 @@
 </head>
 <body>
 
-    <!-- 1️⃣ TOPO (ROXO) -->
-    <section class="bloco-topo" id="topo-intro">
+    <!-- 1️⃣ TOPO (ROXO) COM AS BOLHAS EM CSS PURO -->
+    <section class="bloco-topo">
         <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
         <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
         
@@ -215,6 +239,16 @@
             <svg class="seta-svg seta-2" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
             <svg class="seta-svg seta-3" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
         </div>
+
+        <!-- Elementos das bolhas injetados diretamente na seção roxa -->
+        <div class="bolha-css b1"></div>
+        <div class="bolha-css b2"></div>
+        <div class="bolha-css b3"></div>
+        <div class="bolha-css b4"></div>
+        <div class="bolha-css b5"></div>
+        <div class="bolha-css b6"></div>
+        <div class="bolha-css b7"></div>
+        <div class="bolha-css b8"></div>
     </section>
 
     <!-- 2️⃣ SABÃO LÍQUIDO (AMARELO) -->
@@ -252,41 +286,3 @@
         <p>Elimina germes e bactérias das superfícies, garantindo proteção e um frescor agradável para toda a casa.</p>
     </section>
 
-    <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
-    <section class="bloco-alcool">
-        <img src="https://placeholder.com" alt="Álcool Perfumado" class="img-produto">
-        <h1>Álcool Perfumado</h1>
-        <p>Secagem ultra rápida para limpeza de vidros, mesas e superfícies, deixando um toque de perfume marcante.</p>
-    </section>
-
-    <!-- 8️⃣ RODA PÉ (ROXO) -->
-    <section class="bloco-rodape" style="min-height: 50vh;">
-        <h1>📦 Faça seu Pedido!</h1>
-        <p>Atendemos com entregas rápidas na região. Aceitamos pagamentos via Pix, cartões de débito e crédito.</p>
-        <p><strong>Toque no botão verde flutuante para falar conosco no WhatsApp Business!</strong></p>
-    </section>
-
-    <!-- 🟢 BOTÃO FLUTUANTE COM A LOGO OFICIAL -->
-    <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
-        <img src="https://wikimedia.org" alt="WhatsApp">
-    </a>
-
-    <!-- ⚙️ SCRIPT CORRIGIDO COM ESTILIZAÇÃO DIRETA -->
-    <script>
-        function criarBolha() {
-            const topoSection = document.getElementById('topo-intro');
-            if (!topoSection) return;
-
-            const bolha = document.createElement('div');
-            bolha.classList.add('bolha');
-
-            // Tamanho totalmente aleatório (entre 18px e 55px)
-            const tamanho = Math.random() * 37 + 18;
-            bolha.style.width = `${tamanho}px`;
-            bolha.style.height = `${tamanho}px`;
-
-            // Posição de surgimento horizontal na tela (de 0% a 95%)
-            bolha.style.left = `${Math.random() * 95}%`;
-
-            // Velocidade lenta e suave (subida varia aleatoriamente entre 6s e 10s)
-        
