@@ -2,10 +2,258 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Primeiro Olá Mundo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Produtos de Limpeza</title>
+    <style>
+        /* Estilos Gerais (Reset) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        /* Configuração de cada bloco da tela */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* 🎨 PALETA DE CORES DA SUA IMAGEM */
+        .bloco-topo {
+            background-color: #A254F2;
+            color: white;
+        }
+
+        .bloco-sabao {
+            background-color: #FFD043;
+            color: #222;
+        }
+
+        .bloco-amaciante {
+            background-color: #1A8FE3;
+            color: white;
+        }
+
+        .bloco-brilho {
+            background-color: #00A877;
+            color: white;
+        }
+
+        .bloco-detergente {
+            background-color: #4CC9F0;
+            color: #222;
+        }
+
+        .bloco-desinfetante {
+            background-color: #1A8FE3;
+            color: white;
+        }
+
+        .bloco-alcool {
+            background-color: #A254F2;
+            color: white;
+        }
+
+        .bloco-rodape {
+            background-color: #923DF2;
+            color: white;
+        }
+
+        /* Tipografia */
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .titulo-principal {
+            font-size: 3.5rem;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Imagens */
+        .img-produto {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.2));
+        }
+
+        /* CONTAINER DAS SETAS SVG */
+        .container-setas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin-top: 30px;
+        }
+
+        .seta-svg {
+            width: 35px;
+            height: 20px;
+            fill: none;
+            stroke: white;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: deslizaSetas 1.5s infinite ease-in-out;
+        }
+
+        /* Efeito de cascata nas setas (uma pisca depois da outra) */
+        .seta-1 { animation-delay: 0s; }
+        .seta-2 { animation-delay: 0.2s; }
+        .seta-3 { animation-delay: 0.4s; }
+
+        @keyframes deslizaSetas {
+            0% {
+                opacity: 0.3;
+                transform: translateY(-5px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(5px);
+            }
+            100% {
+                opacity: 0.3;
+                transform: translateY(-5px);
+            }
+        }
+
+        /* 🟢 BOTÃO FLUTUANTE 100% REDONDO NO CANTO INFERIOR DIREITO */
+        .whatsapp-flutuante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .whatsapp-flutuante:hover {
+            transform: scale(1.1);
+            background-color: #20ba59;
+        }
+
+        /* Estilo da Logo Oficial interna */
+        .whatsapp-flutuante img {
+            width: 38px;
+            height: 38px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .titulo-principal { font-size: 2.5rem; }
+            p { font-size: 1.1rem; }
+            .img-produto { max-width: 180px; }
+            .whatsapp-flutuante {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-flutuante img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Olá mundo</h1>
+
+    <!-- 1️⃣ TOPO (ROXO) -->
+    <section class="bloco-topo">
+        <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
+        <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
+        
+        <!-- 🧭 SETAS SVG ANIMADAS UMA EMBAIXO DA OUTRA -->
+        <div class="container-setas">
+            <svg class="seta-svg seta-1" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
+            <svg class="seta-svg seta-2" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
+            <svg class="seta-svg seta-3" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
+        </div>
+    </section>
+
+    <!-- 2️⃣ SABÃO LÍQUIDO (AMARELO) -->
+    <section class="bloco-sabao">
+        <img src="https://placeholder.com" alt="Sabão Líquido" class="img-produto">
+        <h1>Sabão Líquido</h1>
+        <p>Lava suas roupas com o máximo cuidado, removendo manchas difíceis sem desbotar as cores dos tecidos.</p>
+    </section>
+
+    <!-- 3️⃣ AMACIANTE (AZUL ESCURO) -->
+    <section class="bloco-amaciante">
+        <img src="https://placeholder.com" alt="Amaciante" class="img-produto">
+        <h1>Amaciante</h1>
+        <p>Deixa suas roupas macias, fáceis de passar e com um perfume sofisticado e prolongado por dias.</p>
+    </section>
+
+    <!-- 4️⃣ BRILHO ALUMÍNIO (VERDE) -->
+    <section class="bloco-brilho">
+        <img src="https://placeholder.com" alt="Brilho Alumínio" class="img-produto">
+        <h1>Brilho Alumínio</h1>
+        <p>Remove manchas, gorduras queimadas e devolve aquele brilho espelhado incrível para suas panelas e utensílios.</p>
+    </section>
+
+    <!-- 5️⃣ DETERGENTE (AZUL CLARO) -->
+    <section class="bloco-detergente">
+        <img src="https://placeholder.com" alt="Detergente" class="img-produto">
+        <h1>Detergente</h1>
+        <p>Ação desengordurante máxima para louças impecáveis rapidamente, sem agredir ou ressecar suas mãos.</p>
+    </section>
+
+    <!-- 6️⃣ DESINFETANTE (AZUL ESCURO) -->
+    <section class="bloco-desinfetante">
+        <img src="https://placeholder.com" alt="Desinfetante" class="img-produto">
+        <h1>Desinfetante</h1>
+        <p>Elimina germes e bactérias das superfícies, garantindo proteção e um frescor agradável para toda a casa.</p>
+    </section>
+
+    <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
+    <section class="bloco-alcool">
+        <img src="https://placeholder.com" alt="Álcool Perfumado" class="img-produto">
+        <h1>Álcool Perfumado</h1>
+        <p>Secagem ultra rápida para limpeza de vidros, mesas e superfícies, deixando um toque de perfume marcante.</p>
+    </section>
+
+    <!-- 8️⃣ RODA PÉ (ROXO) -->
+    <section class="bloco-rodape" style="min-height: 50vh;">
+        <h1>📦 Faça seu Pedido!</h1>
+        <p>Atendemos com entregas rápidas na região. Aceitamos pagamentos via Pix, cartões de débito e crédito.</p>
+        <p><strong>Toque no botão verde flutuante para falar conosco no WhatsApp Business!</strong></p>
+    </section>
+
+    <!-- 🟢 BOTÃO FLUTUANTE COM A LOGO OFICIAL DO WHATSAPP -->
+    <!-- Lembre-se de trocar o número 5500999999999 pelo seu número real -->
+    <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
+        <img src="https://wikimedia.org" alt="WhatsApp">
+    </a>
+
 </body>
 </html>
-
