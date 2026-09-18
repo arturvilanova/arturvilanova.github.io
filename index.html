@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Produtos de Limpeza</title>
+    
+    <!-- 🔤 LINKS DE INCORPORAÇÃO DO GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    
     <style>
         /* Estilos Gerais (Reset) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Fonte padrão para textos comuns e emojis coloridos */
         body {
             background-color: #f4f4f4;
             overflow-x: hidden;
+            font-family: "Noto Color Emoji", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         /* Configuração de cada bloco da tela */
@@ -33,61 +40,63 @@
 
         /* 🎨 PALETA DE CORES DA SUA IMAGEM */
         .bloco-topo {
-            background-color: #A254F2; /* Roxo do Topo */
+            background-color: #A254F2;
             color: white;
             overflow: hidden;
         }
 
         .bloco-sabao {
-            background-color: #FFD043; /* Amarelo */
+            background-color: #FFD043;
             color: #222;
         }
 
         .bloco-amaciante {
-            background-color: #1A8FE3; /* Azul Escuro */
+            background-color: #1A8FE3;
             color: white;
         }
 
         .bloco-brilho {
-            background-color: #00A877; /* Verde */
+            background-color: #00A877;
             color: white;
         }
 
         .bloco-detergente {
-            background-color: #4CC9F0; /* Azul Claro */
+            background-color: #4CC9F0;
             color: #222;
         }
 
         .bloco-desinfetante {
-            background-color: #1A8FE3; /* Azul Escuro */
+            background-color: #1A8FE3;
             color: white;
         }
 
         .bloco-alcool {
-            background-color: #A254F2; /* Roxo */
+            background-color: #A254F2;
             color: white;
         }
 
         .bloco-rodape {
-            background-color: #923DF2; /* Roxo do Rodapé */
+            background-color: #923DF2;
             color: white;
+            padding: 60px 20px;
+            text-align: center;
         }
 
-        /* Tipografia */
+        /* 🔤 CLASSE DA FONTE AGBALUMO PARA OS TÍTULOS */
+        h1, .titulo-principal {
+            font-family: "Agbalumo", system-ui, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            margin-bottom: 20px;
+        }
+
         h1 {
             font-size: 2.8rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-            position: relative;
-            z-index: 10;
         }
 
         .titulo-principal {
             font-size: 3.5rem;
-            font-style: italic;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 10;
         }
 
         p {
@@ -107,38 +116,33 @@
             filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.2));
         }
 
-        /* CONTAINER DAS SETAS SVG */
+        /* CONTAINER DA SETA SVG ÚNICA BRANCA E MAIOR */
         .container-setas {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
-            margin-top: 30px;
+            margin-top: 40px;
             position: relative;
             z-index: 10;
         }
 
         .seta-svg {
-            width: 35px;
-            height: 20px;
+            width: 70px; /* Seta maior */
+            height: 40px;
             fill: none;
-            stroke: white;
-            stroke-width: 4;
+            stroke: white; /* Seta branca */
+            stroke-width: 5; /* Traço mais espesso para dar destaque */
             stroke-linecap: round;
             stroke-linejoin: round;
             animation: deslizaSetas 1.5s infinite ease-in-out;
         }
 
-        .seta-1 { animation-delay: 0s; }
-        .seta-2 { animation-delay: 0.2s; }
-        .seta-3 { animation-delay: 0.4s; }
-
         @keyframes deslizaSetas {
-            0%, 100% { opacity: 0.3; transform: translateY(-5px); }
-            50% { opacity: 1; transform: translateY(5px); }
+            0%, 100% { opacity: 0.4; transform: translateY(-8px); }
+            50% { opacity: 1; transform: translateY(8px); }
         }
 
-        /* 🧼 NOVAS BOLHAS REALISTAS USANDO APENAS CSS PURO */
+        /* 🧼 BOLHAS REALISTAS EM CSS PURO */
         .bolha-css {
             position: absolute;
             bottom: -60px;
@@ -149,7 +153,6 @@
             z-index: 5;
         }
 
-        /* Brilho interno realista da bolha */
         .bolha-css::before {
             content: '';
             position: absolute;
@@ -161,7 +164,6 @@
             border-radius: 50%;
         }
 
-        /* Configuração de posições, tamanhos e atrasos individuais de cada bolha */
         .b1 { left: 10%; width: 35px; height: 35px; animation-duration: 7s; animation-delay: 0s; }
         .b2 { left: 25%; width: 20px; height: 20px; animation-duration: 5s; animation-delay: 1.5s; }
         .b3 { left: 40%; width: 45px; height: 45px; animation-duration: 8s; animation-delay: 0.5s; }
@@ -176,14 +178,9 @@
                 transform: translateY(0) scale(1) translateX(0);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
             100% {
-                /* Sobe até o topo do bloco roxo balançando levemente para o lado */
                 transform: translateY(-110vh) scale(1.1) translateX(20px);
                 opacity: 0;
             }
@@ -219,7 +216,7 @@
         /* Responsividade */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
-            .titulo-principal { font-size: 2.5rem; }
+            .titulo-principal { font-size: 2.3rem; }
             p { font-size: 1.1rem; }
             .img-produto { max-width: 180px; }
             .whatsapp-flutuante { width: 60px; height: 60px; bottom: 20px; right: 20px; }
@@ -229,18 +226,16 @@
 </head>
 <body>
 
-    <!-- 1️⃣ TOPO (ROXO) COM AS BOLHAS EM CSS PURO -->
+    <!-- 1️⃣ TOPO (ROXO) -->
     <section class="bloco-topo">
         <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
         <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
         
+        <!-- 🧭 UMA ÚNICA SETA SVG BRANCA E MAIOR -->
         <div class="container-setas">
-            <svg class="seta-svg seta-1" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
-            <svg class="seta-svg seta-2" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
-            <svg class="seta-svg seta-3" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
+            <svg class="seta-svg" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
         </div>
 
-        <!-- Elementos das bolhas injetados diretamente na seção roxa -->
         <div class="bolha-css b1"></div>
         <div class="bolha-css b2"></div>
         <div class="bolha-css b3"></div>
@@ -286,3 +281,13 @@
         <p>Elimina germes e bactérias das superfícies, garantindo proteção e um frescor agradável para toda a casa.</p>
     </section>
 
+    <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
+    <section class="bloco-alcool">
+        <img src="https://placeholder.com" alt="Álcool Perfumado" class="img-produto">
+        <h1>Álcool Perfumado</h1>
+        <p>Secagem ultra rápida para limpeza de superfícies e vidros, trazendo um perfume exclusivo e duradouro para o ambiente.</p>
+    </section>
+
+    <!-- 8️⃣ RODAPÉ SIMPLES -->
+    <footer class="bloco-rodape">
+        
