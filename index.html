@@ -109,65 +109,63 @@
             50% { opacity: 1; transform: translateY(6px); }
         }
 
-        /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP (INICIA TOTALMENTE OCULTO) */
-        .whatsapp-flutuante {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25D366;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            z-index: 10000;
-            text-decoration: none;
-            
-            /* Transição de opacidade controlada pelo JavaScript */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s;
-        }
+        /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP (MODIFICADO) */
+.whatsapp-flutuante {
+    position: fixed; /* Flutua normalmente na tela */
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    z-index: 10000;
+    text-decoration: none;
+    
+    /* Controle de opacidade inicial */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s;
+}
 
-        /* Classe injetada pelo script quando atinge o ponto da sua foto */
-        .whatsapp-flutuante.mostrar {
-            opacity: 1;
-            visibility: visible;
-        }
+/* Classe para mostrar o botão na rolagem */
+.whatsapp-flutuante.mostrar {
+    opacity: 1;
+    visibility: visible;
+}
 
-        .whatsapp-flutuante:hover {
-            transform: scale(1.1);
-            background-color: #20ba59;
-        }
+/* ✨ Classe que trava o botão no final do bloco do álcool */
+.whatsapp-flutuante.travado {
+    position: absolute;
+    bottom: 25px; /* Fixa o botão exatamente onde você marcou na foto */
+}
 
-        /* Ícone interno em branco puro */
-        .whatsapp-flutuante img {
-            width: 36px;
-            height: 36px;
-            display: block;
-            filter: brightness(0) invert(1);
-        }
+/* Ícone interno em branco puro */
+.whatsapp-flutuante img {
+    width: 36px;
+    height: 36px;
+    display: block;
+    filter: brightness(0) invert(1);
+}
 
-        /* Responsividade para celulares */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .titulo-principal { font-size: 2.3rem; }
-            p { font-size: 1.1rem; }
-            .img-produto { width: 150px; height: 220px; }
-            
-            .whatsapp-flutuante {
-                width: 60px;
-                height: 60px;
-                bottom: 20px;
-                right: 20px;
-            }
-            .whatsapp-flutuante img {
-                width: 32px;
-                height: 32px;
-            }
-        }
+/* Responsividade para celulares */
+@media (max-width: 768px) {
+    .whatsapp-flutuante {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-flutuante.travado {
+        bottom: 20px;
+    }
+    .whatsapp-flutuante img {
+        width: 32px;
+        height: 32px;
+    }
     </style>
 </head>
 <body>
@@ -220,12 +218,23 @@
         <p>Elimina germes e bactérias das superfícies, garantindo proteção e um frescor agradável para toda a casa.</p>
     </section>
 
-    <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
-    <section class="bloco-alcool">
-        <img src="https://picsum.photos" alt="Álcool Perfumado" class="img-produto">
-        <h1>Álcool Perfumado</h1>
-        <p>Secagem ultra rápida para limpeza de superfícies e vidros, trazendo um perfume exclusivo e duradouro para o ambiente.</p>
-    </section>
+  <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
+<section class="bloco-alcool" id="secao-alcool">
+    <img src="https://picsum.photos" alt="Álcool Perfumado" class="img-produto">
+    <h1>Álcool Perfumado</h1>
+    <p>Secagem ultra rápida para limpeza de superfícies e vidros...</p>
+    
+    <!-- 🟢 O BOTÃO DEVE FICAR AQUI DENTRO AGORA -->
+    <a href="https://wa.me!" class="whatsapp-flutuante" id="btn-whatsapp" target="_blank" title="Falar no WhatsApp">
+        <img src="https://jsdelivr.net" alt="WhatsApp">
+    </a>
+</section>
+
+<!-- 8️⃣ RODAPÉ SIMPLES -->
+<footer class="bloco-rodape" id="secao-rodape">
+    <p>&copy; 2026 Meus Produtos de Limpeza. Todos os direitos reservados.</p>
+</footer>
+
 
     <!-- 8️⃣ RODAPÉ SIMPLES -->
     <footer class="bloco-rodape">
@@ -238,28 +247,38 @@
         <img src="https://jsdelivr.net" alt="WhatsApp">
     </a>
 
-        <!-- ⚙️ SCRIPT ATUALIZADO: ATIVA UM POUCO ANTES DE CHEGAR NO SABÃO LÍQUIDO -->
-    <script>
-        const botaozap = document.getElementById('btn-whatsapp');
-        const blocoSabao = document.getElementById('secao-sabao');
+        <!-- ⚙️ SCRIPT ATUALIZADO: APARECE ANTES E TRAVA NO BLOCO DO ÁLCOOL -->
+<script>
+    const botaozap = document.getElementById('btn-whatsapp');
+    const blocoSabao = document.getElementById('secao-sabao');
+    const blocoAlcool = document.getElementById('secao-alcool');
+    const rodape = document.getElementById('secao-rodape');
 
-        window.addEventListener('scroll', () => {
-            if (!blocoSabao || !botaozap) return;
+    window.addEventListener('scroll', () => {
+        if (!blocoSabao || !botaozap || !blocoAlcool || !rodape) return;
 
-            // Pega a distância do bloco amarelo até o topo
-            const comecoDaAreaAmarela = blocoSabao.offsetTop;
+        const scrollDoUsuario = window.scrollY || window.pageYOffset;
+        
+        // 1. Controle de Aparição (Aparece 300px antes do Sabão Líquido)
+        const comecoDaAreaAmarela = blocoSabao.offsetTop;
+        if (scrollDoUsuario >= (comecoDaAreaAmarela - 300)) { 
+            botaozap.classList.add('mostrar');
+        } else {
+            botaozap.classList.remove('mostrar');
+        }
 
-            // Quantidade de pixels que a tela já desceu
-            const scrollDoUsuario = window.scrollY || window.pageYOffset;
-
-            // O "- 300" faz o botão aparecer 450 pixels ANTES da área amarela colar no topo
-            if (scrollDoUsuario >= (comecoDaAreaAmarela - 450)) { 
-                botaozap.classList.add('mostrar');
-            } else {
-                botaozap.classList.remove('mostrar');
-            }
-        });
-    </script>
+        // 2. Controle de Parada (Trava exatamente no ponto marcado na foto)
+        const topoRodape = rodape.offsetTop;
+        const alturaJanela = window.innerHeight;
+        
+        // Se a parte inferior do navegador encostar no rodapé, o botão trava
+        if ((scrollDoUsuario + alturaJanela) >= topoRodape) {
+            botaozap.classList.add('travado');
+        } else {
+            botaozap.classList.remove('travado');
+        }
+    });
+</script>
     
 
 </body>
