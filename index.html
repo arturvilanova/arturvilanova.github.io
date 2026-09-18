@@ -39,40 +39,13 @@
         }
 
         /* 🎨 PALETA DE CORES DA SUA IMAGEM */
-        .bloco-topo {
-            background-color: #A254F2;
-            color: white;
-        }
-
-        .bloco-sabao {
-            background-color: #FFD043;
-            color: #222;
-        }
-
-        .bloco-amaciante {
-            background-color: #1A8FE3;
-            color: white;
-        }
-
-        .bloco-brilho {
-            background-color: #00A877;
-            color: white;
-        }
-
-        .bloco-detergente {
-            background-color: #4CC9F0;
-            color: #222;
-        }
-
-        .bloco-desinfetante {
-            background-color: #1A8FE3;
-            color: white;
-        }
-
-        .bloco-alcool {
-            background-color: #A254F2;
-            color: white;
-        }
+        .bloco-topo { background-color: #A254F2; color: white; }
+        .bloco-sabao { background-color: #FFD043; color: #222; }
+        .bloco-amaciante { background-color: #1A8FE3; color: white; }
+        .bloco-brilho { background-color: #00A877; color: white; }
+        .bloco-detergente { background-color: #4CC9F0; color: #222; }
+        .bloco-desinfetante { background-color: #1A8FE3; color: white; }
+        .bloco-alcool { background-color: #A254F2; color: white; }
 
         .bloco-rodape {
             background-color: #923DF2;
@@ -89,9 +62,7 @@
             margin-bottom: 20px;
         }
 
-        h1 {
-            font-size: 2.8rem;
-        }
+        h1 { font-size: 2.8rem; }
 
         .titulo-principal {
             font-size: 3.5rem;
@@ -137,33 +108,73 @@
             50% { opacity: 1; transform: translateY(8px); }
         }
 
-        /* 🟢 BOTÃO FLUTUANTE COM A LOGO OFICIAL DO WHATSAPP */
-        .whatsapp-flutuante {
+        /* 🟢 CONTAINER DO BOTÃO FLUTUANTE COM EFEITO DE ONDAS CORRIGIDO */
+        .whatsapp-container {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: #25D366;
             width: 65px;
             height: 65px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ondas mais fortes e mais curtas */
+        .whatsapp-container::before,
+        .whatsapp-container::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #25D366;
+            opacity: 0.9; /* Onda bem mais visível */
+            z-index: -1;
+            animation: pulsarOndas 1.8s infinite cubic-bezier(0.1, 0, 0.3, 1);
+        }
+
+        .whatsapp-container::after {
+            animation-delay: 0.9s;
+        }
+
+        /* O botão principal do WhatsApp */
+        .whatsapp-flutuante {
+            background-color: #25D366;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            z-index: 10000;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: transform 0.2s;
+            text-decoration: none;
         }
 
-        .whatsapp-flutuante:hover {
+        .whatsapp-container:hover .whatsapp-flutuante {
             transform: scale(1.1);
-            background-color: #20ba59;
         }
 
-        /* Força a logo oficial a se ajustar perfeitamente dentro do círculo */
+        /* Ícone do WhatsApp em branco puro */
         .whatsapp-flutuante img {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Animação com expansão menor (1.4 em vez de 1.8) */
+        @keyframes pulsarOndas {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(1.4); /* Onda mais curta perto do botão */
+                opacity: 0;
+            }
         }
 
         /* Responsividade para celulares */
@@ -172,8 +183,17 @@
             .titulo-principal { font-size: 2.3rem; }
             p { font-size: 1.1rem; }
             .img-produto { max-width: 180px; }
-            .whatsapp-flutuante { width: 60px; height: 60px; bottom: 20px; right: 20px; }
-            .whatsapp-flutuante img { width: 32px; height: 32px; }
+            
+            .whatsapp-container {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-flutuante img {
+                width: 32px;
+                height: 32px;
+            }
         }
     </style>
 </head>
@@ -238,11 +258,12 @@
         <p style="font-size: 1.1rem; margin-top: 5px; opacity: 0.9;">Entre em contato pelo botão flutuante para fazer o seu pedido!</p>
     </footer>
 
-    <!-- 🟢 BOTÃO FLUTUANTE DA LOGO OFICIAL DO WHATSAPP -->
-    <!-- Mude o número 5500999999999 para o seu número real quando for publicar -->
-    <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
-        <img src="https://wikimedia.org" alt="WhatsApp">
-    </a>
+    <!-- 🟢 BOTÃO FLUTUANTE DA LOGO OFICIAL DO WHATSAPP COM EFEITO RADAR CURTO -->
+    <div class="whatsapp-container">
+        <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
+            <img src="https://jsdelivr.net" alt="WhatsApp">
+        </a>
+    </div>
 
 </body>
 </html>
