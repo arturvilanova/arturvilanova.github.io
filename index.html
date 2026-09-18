@@ -6,9 +6,9 @@
     <title>Meus Produtos de Limpeza</title>
     
     <!-- 🔤 LINKS DE INCORPORAÇÃO DO GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Agbalumo&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     
     <style>
         /* Estilos Gerais (Reset) */
@@ -18,7 +18,6 @@
             box-sizing: border-box;
         }
 
-        /* Fonte padrão para textos comuns e emojis coloridos */
         body {
             background-color: #f4f4f4;
             overflow-x: hidden;
@@ -45,35 +44,12 @@
             overflow: hidden;
         }
 
-        .bloco-sabao {
-            background-color: #FFD043;
-            color: #222;
-        }
-
-        .bloco-amaciante {
-            background-color: #1A8FE3;
-            color: white;
-        }
-
-        .bloco-brilho {
-            background-color: #00A877;
-            color: white;
-        }
-
-        .bloco-detergente {
-            background-color: #4CC9F0;
-            color: #222;
-        }
-
-        .bloco-desinfetante {
-            background-color: #1A8FE3;
-            color: white;
-        }
-
-        .bloco-alcool {
-            background-color: #A254F2;
-            color: white;
-        }
+        .bloco-sabao { background-color: #FFD043; color: #222; }
+        .bloco-amaciante { background-color: #1A8FE3; color: white; }
+        .bloco-brilho { background-color: #00A877; color: white; }
+        .bloco-detergente { background-color: #4CC9F0; color: #222; }
+        .bloco-desinfetante { background-color: #1A8FE3; color: white; }
+        .bloco-alcool { background-color: #A254F2; color: white; }
 
         .bloco-rodape {
             background-color: #923DF2;
@@ -90,9 +66,7 @@
             margin-bottom: 20px;
         }
 
-        h1 {
-            font-size: 2.8rem;
-        }
+        h1 { font-size: 2.8rem; }
 
         .titulo-principal {
             font-size: 3.5rem;
@@ -127,11 +101,11 @@
         }
 
         .seta-svg {
-            width: 70px; /* Seta maior */
+            width: 70px;
             height: 40px;
             fill: none;
-            stroke: white; /* Seta branca */
-            stroke-width: 5; /* Traço mais espesso para dar destaque */
+            stroke: white;
+            stroke-width: 5;
             stroke-linecap: round;
             stroke-linejoin: round;
             animation: deslizaSetas 1.5s infinite ease-in-out;
@@ -142,18 +116,18 @@
             50% { opacity: 1; transform: translateY(8px); }
         }
 
-        /* 🧼 BOLHAS REALISTAS EM CSS PURO */
-        .bolha-css {
+        /* 🧼 BOLHAS REALISTAS DINÂMICAS */
+        .bolha-movivel {
             position: absolute;
-            bottom: -60px;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 0, 255, 0.2) 60%, rgba(0, 255, 255, 0.2) 85%, rgba(255, 255, 255, 0) 100%);
             box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.6), 0 2px 5px rgba(255, 255, 255, 0.1);
-            animation: subirBolhaCSS infinite linear;
             z-index: 5;
+            opacity: 0.8;
+            pointer-events: none;
         }
 
-        .bolha-css::before {
+        .bolha-movivel::before {
             content: '';
             position: absolute;
             top: 15%;
@@ -162,28 +136,6 @@
             height: 25%;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-        }
-
-        .b1 { left: 10%; width: 35px; height: 35px; animation-duration: 7s; animation-delay: 0s; }
-        .b2 { left: 25%; width: 20px; height: 20px; animation-duration: 5s; animation-delay: 1.5s; }
-        .b3 { left: 40%; width: 45px; height: 45px; animation-duration: 8s; animation-delay: 0.5s; }
-        .b4 { left: 55%; width: 25px; height: 25px; animation-duration: 6s; animation-delay: 2s; }
-        .b5 { left: 70%; width: 50px; height: 50px; animation-duration: 9s; animation-delay: 1s; }
-        .b6 { left: 85%; width: 30px; height: 30px; animation-duration: 7s; animation-delay: 3s; }
-        .b7 { left: 15%; width: 40px; height: 40px; animation-duration: 7.5s; animation-delay: 4s; }
-        .b8 { left: 65%; width: 22px; height: 22px; animation-duration: 5.5s; animation-delay: 3.5s; }
-
-        @keyframes subirBolhaCSS {
-            0% {
-                transform: translateY(0) scale(1) translateX(0);
-                opacity: 0;
-            }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% {
-                transform: translateY(-110vh) scale(1.1) translateX(20px);
-                opacity: 0;
-            }
         }
 
         /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP */
@@ -203,15 +155,8 @@
             transition: transform 0.2s, background-color 0.2s;
         }
 
-        .whatsapp-flutuante:hover {
-            transform: scale(1.1);
-            background-color: #20ba59;
-        }
-
-        .whatsapp-flutuante img {
-            width: 38px;
-            height: 38px;
-        }
+        .whatsapp-flutuante:hover { transform: scale(1.1); background-color: #20ba59; }
+        .whatsapp-flutuante img { width: 38px; height: 38px; }
 
         /* Responsividade */
         @media (max-width: 768px) {
@@ -227,7 +172,7 @@
 <body>
 
     <!-- 1️⃣ TOPO (ROXO) -->
-    <section class="bloco-topo">
+    <section class="bloco-topo" id="container-dvd">
         <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo limpo e cheiroso!</h1>
         <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
         
@@ -235,15 +180,6 @@
         <div class="container-setas">
             <svg class="seta-svg" viewBox="0 0 24 24"><path d="M4 9l8 8 8-8"/></svg>
         </div>
-
-        <div class="bolha-css b1"></div>
-        <div class="bolha-css b2"></div>
-        <div class="bolha-css b3"></div>
-        <div class="bolha-css b4"></div>
-        <div class="bolha-css b5"></div>
-        <div class="bolha-css b6"></div>
-        <div class="bolha-css b7"></div>
-        <div class="bolha-css b8"></div>
     </section>
 
     <!-- 2️⃣ SABÃO LÍQUIDO (AMARELO) -->
@@ -288,6 +224,47 @@
         <p>Secagem ultra rápida para limpeza de superfícies e vidros, trazendo um perfume exclusivo e duradouro para o ambiente.</p>
     </section>
 
-    <!-- 8️⃣ RODAPÉ SIMPLES -->
     <footer class="bloco-rodape">
+        <p>&copy; 2026 Meus Produtos de Limpeza. Todos os direitos reservados.</p>
+        <p style="font-size: 1.1rem; margin-top: 5px; opacity: 0.9;">Entre em contato pelo botão flutuante para fazer o seu pedido!</p>
+    </footer>
+
+    <a href="https://wa.me." class="whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
+        <img src="https://wikimedia.org" alt="WhatsApp">
+    </a>
+
+    <!-- ⚙️ SCRIPT ESTILO PROTETOR DE TELA DO DVD (RICOCHETE FÍSICO) -->
+    <script>
+        const containerEfeito = document.getElementById('container-dvd');
         
+        // Configuração das propriedades individuais de cada uma das 6 bolhas para não andarem iguais
+        const dadosBolhas = [
+            { tam: 55, x: 50, y: 50, velX: 1.2, velY: 1.0 },
+            { tam: 30, x: 200, y: 120, velX: -1.0, velY: 1.4 },
+            { tam: 45, x: 100, y: 300, velX: 1.5, velY: -0.9 },
+            { tam: 25, x: 280, y: 80, velX: -1.3, velY: -1.2 },
+            { tam: 60, x: 150, y: 220, velX: 0.8, velY: 1.5 },
+            { tam: 35, x: 50, y: 400, velX: -1.4, velY: -0.8 }
+        ];
+
+        const elementosBolhas = [];
+
+        // Inicializa e insere as bolhas fisicamente na tela roxa
+        dadosBolhas.forEach((config) => {
+            const divBolha = document.createElement('div');
+            divBolha.classList.add('bolha-movivel');
+            divBolha.style.width = `${config.tam}px`;
+            divBolha.style.height = `${config.tam}px`;
+            containerEfeito.appendChild(divBolha);
+            
+            elementosBolhas.push({
+                dom: divBolha,
+                config: config
+            });
+        });
+
+        // Loop de animação contínuo para mover e rebater nas bordas estilo DVD
+        function animarEfeitoDvd() {
+            if (!containerEfeito) return;
+
+            const larguraFundo = containerEfeito.clientWidth;
