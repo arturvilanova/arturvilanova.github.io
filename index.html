@@ -76,12 +76,14 @@
             margin-bottom: 15px;
         }
 
-        /* Imagens */
+        /* Imagens (Formatadas para formato de garrafa/pote) */
         .img-produto {
-            max-width: 220px;
-            height: auto;
+            width: 180px;
+            height: 260px;
+            object-fit: cover;
             margin-bottom: 25px;
-            filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.2));
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         /* 🧭 CONTAINER DA SETA EXCLUSIVA COM TRAÇO E PONTAS MAIS FINAS */
@@ -99,7 +101,6 @@
             stroke: white;
             stroke-width: 2.5;
             stroke-linecap: square;
-            stroke-linejoin: miter;
             animation: deslizaSetas 1.5s infinite ease-in-out;
         }
 
@@ -108,7 +109,7 @@
             50% { opacity: 1; transform: translateY(6px); }
         }
 
-        /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP (COMEÇA OCULTO) */
+        /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP (INICIA TOTALMENTE OCULTO) */
         .whatsapp-flutuante {
             position: fixed;
             bottom: 25px;
@@ -124,13 +125,13 @@
             z-index: 10000;
             text-decoration: none;
             
-            /* Efeito de sumir/aparecer suave controlado pelo JavaScript */
+            /* Transição de opacidade controlada pelo JavaScript */
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.2s;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s;
         }
 
-        /* Classe que o JavaScript vai injetar dinamicamente para mostrar o botão */
+        /* Classe injetada pelo script quando atinge o ponto da sua foto */
         .whatsapp-flutuante.mostrar {
             opacity: 1;
             visibility: visible;
@@ -154,7 +155,7 @@
             h1 { font-size: 2.2rem; }
             .titulo-principal { font-size: 2.3rem; }
             p { font-size: 1.1rem; }
-            .img-produto { max-width: 180px; }
+            .img-produto { width: 150px; height: 220px; }
             
             .whatsapp-flutuante {
                 width: 60px;
@@ -184,44 +185,44 @@
         </div>
     </section>
 
-    <!-- 2️⃣ SABÃO LÍQUIDO (AMARELO) - Adicionado ID para o rastreamento da rolagem -->
+    <!-- 2️⃣ SABÃO LÍQUIDO (AMARELO) -->
     <section class="bloco-sabao" id="secao-sabao">
-        <img src="https://placeholder.com" alt="Sabão Líquido" class="img-produto">
+        <img src="https://picsum.photos" alt="Sabão Líquido" class="img-produto">
         <h1>Sabão Líquido</h1>
         <p>Lava suas roupas com o máximo cuidado, removendo manchas difíceis sem desbotar as cores dos tecidos.</p>
     </section>
 
     <!-- 3️⃣ AMACIANTE (AZUL ESCURO) -->
     <section class="bloco-amaciante">
-        <img src="https://placeholder.com" alt="Amaciante" class="img-produto">
+        <img src="https://picsum.photos" alt="Amaciante" class="img-produto">
         <h1>Amaciante</h1>
         <p>Deixa suas roupas macias, fáceis de passar e com um perfume sofisticado e prolongado por dias.</p>
     </section>
 
     <!-- 4️⃣ BRILHO ALUMÍNIO (VERDE) -->
     <section class="bloco-brilho">
-        <img src="https://placeholder.com" alt="Brilho Alumínio" class="img-produto">
+        <img src="https://picsum.photos" alt="Brilho Alumínio" class="img-produto">
         <h1>Brilho Alumínio</h1>
         <p>Remove manchas, gorduras queimadas e devolve aquele brilho espelhado incrível para suas panelas e utensílios.</p>
     </section>
 
     <!-- 5️⃣ DETERGENTE (AZUL CLARO) -->
     <section class="bloco-detergente">
-        <img src="https://placeholder.com" alt="Detergente" class="img-produto">
+        <img src="https://picsum.photos" alt="Detergente" class="img-produto">
         <h1>Detergente</h1>
         <p>Ação desengordurante máxima para louças impecáveis rapidamente, sem agredir ou ressecar suas mãos.</p>
     </section>
 
     <!-- 6️⃣ DESINFETANTE (AZUL ESCURO) -->
     <section class="bloco-desinfetante">
-        <img src="https://placeholder.com" alt="Desinfetante" class="img-produto">
+        <img src="https://picsum.photos" alt="Desinfetante" class="img-produto">
         <h1>Desinfetante</h1>
         <p>Elimina germes e bactérias das superfícies, garantindo proteção e um frescor agradável para toda a casa.</p>
     </section>
 
     <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
     <section class="bloco-alcool">
-        <img src="https://placeholder.com" alt="Álcool Perfumado" class="img-produto">
+        <img src="https://picsum.photos" alt="Álcool Perfumado" class="img-produto">
         <h1>Álcool Perfumado</h1>
         <p>Secagem ultra rápida para limpeza de superfícies e vidros, trazendo um perfume exclusivo e duradouro para o ambiente.</p>
     </section>
@@ -233,35 +234,33 @@
     </footer>
 
     <!-- 🟢 BOTÃO FLUTUANTE DA LOGO OFICIAL DO WHATSAPP -->
-    <!-- Adicionado ID para ser controlado pelo Script -->
     <a href="https://wa.me." class="whatsapp-flutuante" id="btn-whatsapp" target="_blank" title="Falar no WhatsApp">
         <img src="https://jsdelivr.net" alt="WhatsApp">
     </a>
 
-    <!-- ⚙️ SCRIPT PARA CONTROLAR A APARIÇÃO DO BOTÃO NA METADE DO SABÃO LÍQUIDO -->
+        <!-- ⚙️ SCRIPT ATUALIZADO: ATIVA UM POUCO ANTES DE CHEGAR NO SABÃO LÍQUIDO -->
     <script>
-        const botaoZap = document.getElementById('btn-whatsapp');
-        const secaoSabao = document.getElementById('secao-sabao');
+        const botaozap = document.getElementById('btn-whatsapp');
+        const blocoSabao = document.getElementById('secao-sabao');
 
         window.addEventListener('scroll', () => {
-            if (!secaoSabao || !botaoZap) return;
+            if (!blocoSabao || !botaozap) return;
 
-            // Calcula onde começa a seção do sabão líquido e a sua metade
-            const topoSabao = secaoSabao.offsetTop;
-            const alturaSabao = secaoSabao.offsetHeight;
-            const metadeDoSabao = topoSabao + (alturaSabao / 2);
+            // Pega a distância do bloco amarelo até o topo
+            const comecoDaAreaAmarela = blocoSabao.offsetTop;
 
-            // Verifica a quantidade atual de rolagem na tela
-            const rolagemAtual = window.scrollY || window.pageYOffset;
+            // Quantidade de pixels que a tela já desceu
+            const scrollDoUsuario = window.scrollY || window.pageYOffset;
 
-            // Se o usuário passou da metade do sabão, adiciona a classe que exibe o botão
-            if (rolagemAtual >= metadeDoSabao) {
-                botaoZap.classList.add('mostrar');
+            // O "- 300" faz o botão aparecer 300 pixels ANTES da área amarela colar no topo
+            if (scrollDoUsuario >= (comecoDaAreaAmarela - 300)) { 
+                botaozap.classList.add('mostrar');
             } else {
-                botaoZap.classList.remove('mostrar');
+                botaozap.classList.remove('mostrar');
             }
         });
     </script>
+    
 
 </body>
 </html>
