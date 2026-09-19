@@ -1,290 +1,542 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Meus Produtos de Limpeza</title>
-    
-    <!-- 🔤 LINKS DE INCORPORAÇÃO DO GOOGLE FONTS CORRIGIDOS -->
-<link rel="preconnect" href="https://googleapis.com">
-<link rel="preconnect" href="https://gstatic.com" crossorigin>
-<link href="https://googleapis.com/css2?family=Agbalumo&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
-    
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
-        /* Estilos Gerais (Reset) */
-        * {
+        /* =========================================================
+           1. VARIÁVEIS
+           ========================================================= */
+
+        :root {
+            --cor-topo: #A254F2;
+            --cor-sabao: #FFD043;
+            --cor-amaciante: #1A8FE3;
+            --cor-brilho: #00A877;
+            --cor-detergente: #4CC9F0;
+            --cor-desinfetante: #1A8FE3;
+            --cor-alcool: #A254F2;
+            --cor-rodape: #923DF2;
+
+            --cor-texto-escuro: #222;
+            --cor-texto-claro: #FFF;
+
+            --cor-whatsapp: #25D366;
+
+            --sombra-produto: 0 8px 20px rgba(0, 0, 0, .15);
+            --sombra-whatsapp: 0 4px 15px rgba(0, 0, 0, .4);
+        }
+
+
+        /* =========================================================
+           2. ANIMAÇÕES
+           ========================================================= */
+
+        @keyframes deslizaSeta {
+            0%,
+            100% {
+                opacity: .4;
+                transform: translateY(-6px);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(6px);
+            }
+        }
+
+
+        /* =========================================================
+           3. RESET
+           ========================================================= */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        /* Fonte padrão para textos comuns e emojis coloridos */
+
+        /* =========================================================
+           4. CONFIGURAÇÕES GERAIS
+           ========================================================= */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #f4f4f4;
+            background: #f4f4f4;
+            color: var(--cor-texto-escuro);
+            font-family: Arial, Helvetica, sans-serif;
             overflow-x: hidden;
-            font-family: "Noto Color Emoji", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Configuração de cada bloco da tela */
+
+        /* =========================================================
+           5. SEÇÕES
+           ========================================================= */
+
         section {
-            min-height: 100vh;
             width: 100%;
+            min-height: 100vh;
+            padding: 40px 20px;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+
             position: relative;
-        }
-
-        /* 🎨 PALETA DE CORES DA SUA IMAGEM */
-        .bloco-topo { background-color: #A254F2; color: white; }
-        .bloco-sabao { background-color: #FFD043; color: #222; }
-        .bloco-amaciante { background-color: #1A8FE3; color: white; }
-        .bloco-brilho { background-color: #00A877; color: white; }
-        .bloco-detergente { background-color: #4CC9F0; color: #222; }
-        .bloco-desinfetante { background-color: #1A8FE3; color: white; }
-        .bloco-alcool { background-color: #A254F2; color: white; }
-
-        .bloco-rodape {
-            background-color: #923DF2;
-            color: white;
-            padding: 60px 20px;
             text-align: center;
         }
 
-        /* 🔤 TÍTULOS CONFIGURADOS COM A FONTE AGBALUMO */
-        h1, .titulo-principal {
-    font-family: "Agbalumo", system-ui, sans-serif !important;
-    font-weight: 400 !important;
-    font-style: normal !important;
-        }
-        
 
-        h1 { font-size: 2.8rem; }
+        /* =========================================================
+           6. TOPO
+           ========================================================= */
+
+        .bloco-topo {
+            background: var(--cor-topo);
+            color: var(--cor-texto-claro);
+        }
+
+
+        /* =========================================================
+           7. SABÃO LÍQUIDO
+           ========================================================= */
+
+        .bloco-sabao {
+            background: var(--cor-sabao);
+            color: var(--cor-texto-escuro);
+        }
+
+
+        /* =========================================================
+           8. AMACIANTE
+           ========================================================= */
+
+        .bloco-amaciante {
+            background: var(--cor-amaciante);
+            color: var(--cor-texto-claro);
+        }
+
+
+        /* =========================================================
+           9. BRILHO ALUMÍNIO
+           ========================================================= */
+
+        .bloco-brilho {
+            background: var(--cor-brilho);
+            color: var(--cor-texto-claro);
+        }
+
+
+        /* =========================================================
+           10. DETERGENTE
+           ========================================================= */
+
+        .bloco-detergente {
+            background: var(--cor-detergente);
+            color: var(--cor-texto-escuro);
+        }
+
+
+        /* =========================================================
+           11. DESINFETANTE
+           ========================================================= */
+
+        .bloco-desinfetante {
+            background: var(--cor-desinfetante);
+            color: var(--cor-texto-claro);
+        }
+
+
+        /* =========================================================
+           12. ÁLCOOL PERFUMADO
+           ========================================================= */
+
+        .bloco-alcool {
+            background: var(--cor-alcool);
+            color: var(--cor-texto-claro);
+        }
+
+
+        /* =========================================================
+           13. TÍTULOS
+           ========================================================= */
+
+        h1,
+        .titulo-principal {
+            font-family: "Agbalumo", system-ui, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+        }
 
         .titulo-principal {
+            max-width: 1000px;
             font-size: 3.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
         }
+
+
+        /* =========================================================
+           14. TEXTOS
+           ========================================================= */
 
         p {
-            font-size: 1.3rem;
             max-width: 600px;
-            line-height: 1.6;
             margin-bottom: 15px;
+
+            font-size: 1.3rem;
+            line-height: 1.6;
         }
 
-        /* Imagens (Formatadas para formato de garrafa/pote) */
+
+        /* =========================================================
+           15. IMAGENS DOS PRODUTOS
+           ========================================================= */
+
         .img-produto {
             width: 180px;
             height: 260px;
-            object-fit: cover;
             margin-bottom: 25px;
+
+            object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: var(--sombra-produto);
         }
 
-        /* 🧭 CONTAINER DA SETA EXCLUSIVA COM TRAÇO E PONTAS MAIS FINAS */
+
+        /* =========================================================
+           16. SETA
+           ========================================================= */
+
         .container-setas {
             display: flex;
             flex-direction: column;
             align-items: center;
+
             margin-top: 45px;
         }
 
         .seta-svg {
             width: 60px;
             height: 45px;
+
             fill: none;
-            stroke: white;
+            stroke: var(--cor-texto-claro);
             stroke-width: 2.5;
             stroke-linecap: square;
-            animation: deslizaSetas 1.5s infinite ease-in-out;
+
+            animation: deslizaSeta 1.5s ease-in-out infinite;
         }
 
-        @keyframes deslizaSetas {
-            0%, 100% { opacity: 0.4; transform: translateY(-6px); }
-            50% { opacity: 1; transform: translateY(6px); }
+
+        /* =========================================================
+           17. RODAPÉ
+           ========================================================= */
+
+        .bloco-rodape {
+            width: 100%;
+            min-height: auto;
+            padding: 60px 20px;
+
+            background: var(--cor-rodape);
+            color: var(--cor-texto-claro);
+
+            text-align: center;
         }
 
-        /* 🟢 BOTÃO FLUTUANTE DO WHATSAPP (MODIFICADO) */
-.whatsapp-flutuante {
-    position: fixed; /* Flutua normalmente na tela */
-    bottom: 25px;
-    right: 25px;
-    background-color: #25D366;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    z-index: 10000;
-    text-decoration: none;
-    
-    /* Controle de opacidade inicial */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s;
-}
 
-/* Classe para mostrar o botão na rolagem */
-.whatsapp-flutuante.mostrar {
-    opacity: 1;
-    visibility: visible;
-}
+        /* =========================================================
+           18. BOTÃO DO WHATSAPP
+           ========================================================= */
 
-/* ✨ Classe que trava o botão no final do bloco do álcool */
-.whatsapp-flutuante.travado {
-    position: absolute;
-    bottom: 25px; /* Fixa o botão exatamente onde você marcou na foto */
-}
+        .whatsapp-flutuante {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 10000;
 
-/* Ícone interno em branco puro */
-.whatsapp-flutuante img {
-    width: 36px;
-    height: 36px;
-    display: block;
-    filter: brightness(0) invert(1);
-}
+            width: 65px;
+            height: 65px;
 
-/* Responsividade para celulares */
-@media (max-width: 768px) {
-    .whatsapp-flutuante {
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
-    }
-    .whatsapp-flutuante.travado {
-        bottom: 20px;
-    }
-    .whatsapp-flutuante img {
-        width: 32px;
-        height: 32px;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    footer {
-        background-color: black;
-    }
-    
+            background: var(--cor-whatsapp);
+            border-radius: 50%;
+            box-shadow: var(--sombra-whatsapp);
+
+            text-decoration: none;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity .3s ease,
+                visibility .3s ease,
+                transform .2s ease;
+        }
+
+        .whatsapp-flutuante.mostrar {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .whatsapp-flutuante.travado {
+            position: absolute;
+            right: 25px;
+            bottom: 25px;
+        }
+
+        .whatsapp-flutuante img {
+            width: 36px;
+            height: 36px;
+            display: block;
+
+            filter: brightness(0) invert(1);
+        }
+
+
+        /* =========================================================
+           19. RESPONSIVIDADE
+           ========================================================= */
+
+        @media (max-width: 768px) {
+            .titulo-principal {
+                font-size: 2.5rem;
+            }
+
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+
+            .whatsapp-flutuante {
+                right: 20px;
+                bottom: 20px;
+
+                width: 60px;
+                height: 60px;
+            }
+
+            .whatsapp-flutuante.travado {
+                right: 20px;
+                bottom: 20px;
+            }
+
+            .whatsapp-flutuante img {
+                width: 32px;
+                height: 32px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-    <!-- 1️⃣ TOPO (ROXO) -->
+    <!-- 1. TOPO -->
     <section class="bloco-topo">
-        <h1 class="titulo-principal">Roupa, louça, casa,<br>tudo muito limpo e cheiroso!</h1>
-        <p>Conheça nossa linha completa de produtos de alta performance para facilitar a sua rotina de limpeza.</p>
-        
-        <!-- 🧭 SETA BRANCA FINA -->
+        <h1 class="titulo-principal">
+            Roupa, louça, casa,<br>
+            tudo muito limpo e cheiroso!
+        </h1>
+
+        <p>
+            Conheça nossa linha completa de produtos de alta performance
+            para facilitar a sua rotina de limpeza.
+        </p>
+
         <div class="container-setas">
-            <svg class="seta-svg" viewBox="0 0 24 24">
-                <path d="M4 8l8 8 8-8"/>
+            <svg class="seta-svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8l8 8 8-8"></path>
             </svg>
         </div>
     </section>
 
-    <!-- 2️⃣ SABÃO LÍQUIDO (AMARELO) -->
+
+    <!-- 2. SABÃO LÍQUIDO -->
     <section class="bloco-sabao" id="secao-sabao">
-        <img src="https://picsum.photos" alt="Sabão Líquido" class="img-produto">
+        <img
+            src="https://picsum.photos/180/260"
+            alt="Sabão Líquido"
+            class="img-produto"
+        >
+
         <h1>Sabão Líquido</h1>
-        <p>Lava suas roupas com o máximo cuidado, removendo manchas difíceis sem desbotar as cores dos tecidos.</p>
+
+        <p>
+            Lava suas roupas com o máximo cuidado, removendo manchas
+            difíceis sem desbotar as cores dos tecidos.
+        </p>
     </section>
 
-    <!-- 3️⃣ AMACIANTE (AZUL ESCURO) -->
+
+    <!-- 3. AMACIANTE -->
     <section class="bloco-amaciante">
-        <img src="https://picsum.photos" alt="Amaciante" class="img-produto">
+        <img
+            src="https://picsum.photos/180/260"
+            alt="Amaciante"
+            class="img-produto"
+        >
+
         <h1>Amaciante</h1>
-        <p>Deixa suas roupas macias, fáceis de passar e com um perfume sofisticado e prolongado por dias.</p>
+
+        <p>
+            Deixa suas roupas macias, fáceis de passar e com um perfume
+            sofisticado e prolongado por dias.
+        </p>
     </section>
 
-    <!-- 4️⃣ BRILHO ALUMÍNIO (VERDE) -->
+
+    <!-- 4. BRILHO ALUMÍNIO -->
     <section class="bloco-brilho">
-        <img src="https://picsum.photos" alt="Brilho Alumínio" class="img-produto">
+        <img
+            src="https://picsum.photos/180/260"
+            alt="Brilho Alumínio"
+            class="img-produto"
+        >
+
         <h1>Brilho Alumínio</h1>
-        <p>Remove manchas, gorduras queimadas e devolve aquele brilho espelhado incrível para suas panelas e utensílios.</p>
+
+        <p>
+            Remove manchas, gorduras queimadas e devolve aquele brilho
+            espelhado incrível para suas panelas e utensílios.
+        </p>
     </section>
 
-    <!-- 5️⃣ DETERGENTE (AZUL CLARO) -->
+
+    <!-- 5. DETERGENTE -->
     <section class="bloco-detergente">
-        <img src="https://picsum.photos" alt="Detergente" class="img-produto">
+        <img
+            src="https://picsum.photos/180/260"
+            alt="Detergente"
+            class="img-produto"
+        >
+
         <h1>Detergente</h1>
-        <p>Ação desengordurante máxima para louças impecáveis rapidamente, sem agredir ou ressecar suas mãos.</p>
+
+        <p>
+            Ação desengordurante máxima para louças impecáveis rapidamente,
+            sem agredir ou ressecar suas mãos.
+        </p>
     </section>
 
-    <!-- 6️⃣ DESINFETANTE (AZUL ESCURO) -->
+
+    <!-- 6. DESINFETANTE -->
     <section class="bloco-desinfetante">
-        <img src="https://picsum.photos" alt="Desinfetante" class="img-produto">
+        <img
+            src="https://picsum.photos/180/260"
+            alt="Desinfetante"
+            class="img-produto"
+        >
+
         <h1>Desinfetante</h1>
-        <p>Elimina germes e bactérias das superfícies, garantindo proteção e um frescor agradável para toda a casa.</p>
+
+        <p>
+            Elimina germes e bactérias das superfícies, garantindo proteção
+            e um frescor agradável para toda a casa.
+        </p>
     </section>
 
-  <!-- 7️⃣ ÁLCOOL PERFUMADO (ROXO) -->
-<section class="bloco-alcool" id="secao-alcool">
-    <img src="https://picsum.photos" alt="Álcool Perfumado" class="img-produto">
-    <h1>Álcool Perfumado</h1>
-    <p>Secagem ultra rápida para limpeza de superfícies e vidros...</p>
-    
-    <!-- 🟢 O BOTÃO DEVE FICAR AQUI DENTRO AGORA -->
-    <a href="https://wa.me!" class="whatsapp-flutuante" id="btn-whatsapp" target="_blank" title="Falar no WhatsApp">
-        <img src="https://jsdelivr.net" alt="WhatsApp">
+
+    <!-- 7. ÁLCOOL PERFUMADO -->
+    <section class="bloco-alcool" id="secao-alcool">
+        <img
+            src="https://picsum.photos/180/260"
+            alt="Álcool Perfumado"
+            class="img-produto"
+        >
+
+        <h1>Álcool Perfumado</h1>
+
+        <p>
+            Secagem ultra rápida para limpeza de superfícies e vidros.
+        </p>
+    </section>
+
+
+    <!-- 8. RODAPÉ -->
+    <footer class="bloco-rodape" id="secao-rodape">
+        <p>
+            &copy; 2026 Meus Produtos de Limpeza.
+            Todos os direitos reservados.
+        </p>
+    </footer>
+
+
+    <!-- BOTÃO DO WHATSAPP -->
+    <a
+        href="https://wa.me/"
+        class="whatsapp-flutuante"
+        id="btn-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp"
+    >
+        <img
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/whatsapp.svg"
+            alt=""
+        >
     </a>
-</section>
-
-<!-- 8️⃣ RODAPÉ SIMPLES -->
-<footer class="bloco-rodape" id="secao-rodape">
-    <p>&copy; 2026 Meus Produtos de Limpeza. Todos os direitos reservados.</p>
-</footer>
 
 
-    <!-- 8️⃣ RODAPÉ SIMPLES 
-    <footer class="bloco-rodape">
-        <p>&copy; 2026 Meus Produtos de Limpeza. Todos os direitos reservados.</p>
-        <p style="font-size: 1.1rem; margin-top: 5px; opacity: 0.9;">Entre em contato pelo botão flutuante para fazer o seu pedido!</p>
-    </footer> -->
+    <script>
+        const botaoWhatsApp = document.querySelector("#btn-whatsapp");
+        const blocoSabao = document.querySelector("#secao-sabao");
+        const rodape = document.querySelector("#secao-rodape");
 
-    <!-- 🟢 BOTÃO FLUTUANTE DA LOGO OFICIAL DO WHATSAPP -->
-    <a href="https://wa.me." class="whatsapp-flutuante" id="btn-whatsapp" target="_blank" title="Falar no WhatsApp">
-        <img src="https://jsdelivr.net" alt="WhatsApp">
-    </a>
+        function atualizarBotaoWhatsApp() {
+            if (!botaoWhatsApp || !blocoSabao || !rodape) return;
 
-        <!-- ⚙️ SCRIPT ATUALIZADO: APARECE ANTES E TRAVA NO BLOCO DO ÁLCOOL -->
-<script>
-    const botaozap = document.getElementById('btn-whatsapp');
-    const blocoSabao = document.getElementById('secao-sabao');
-    const blocoAlcool = document.getElementById('secao-alcool');
-    const rodape = document.getElementById('secao-rodape');
+            const scrollAtual = window.scrollY;
+            const inicioSabao = blocoSabao.offsetTop;
+            const topoRodape = rodape.offsetTop;
+            const alturaTela = window.innerHeight;
 
-    window.addEventListener('scroll', () => {
-        if (!blocoSabao || !botaozap || !blocoAlcool || !rodape) return;
+            // Mostra o botão 300px antes do Sabão Líquido.
+            botaoWhatsApp.classList.toggle(
+                "mostrar",
+                scrollAtual >= inicioSabao - 300
+            );
 
-        const scrollDoUsuario = window.scrollY || window.pageYOffset;
-        
-        // 1. Controle de Aparição (Aparece 300px antes do Sabão Líquido)
-        const comecoDaAreaAmarela = blocoSabao.offsetTop;
-        if (scrollDoUsuario >= (comecoDaAreaAmarela - 300)) { 
-            botaozap.classList.add('mostrar');
-        } else {
-            botaozap.classList.remove('mostrar');
+            // Mantém o botão dentro da área antes do rodapé.
+            botaoWhatsApp.classList.toggle(
+                "travado",
+                scrollAtual + alturaTela >= topoRodape
+            );
         }
 
-        // 2. Controle de Parada (Trava exatamente no ponto marcado na foto)
-        const topoRodape = rodape.offsetTop;
-        const alturaJanela = window.innerHeight;
-        
-        // Se a parte inferior do navegador encostar no rodapé, o botão trava
-        if ((scrollDoUsuario + alturaJanela) >= topoRodape) {
-            botaozap.classList.add('travado');
-        } else {
-            botaozap.classList.remove('travado');
-        }
-    });
-</script>
-    
+        window.addEventListener("scroll", atualizarBotaoWhatsApp);
+        window.addEventListener("resize", atualizarBotaoWhatsApp);
+
+        atualizarBotaoWhatsApp();
+    </script>
 
 </body>
 </html>
+```
