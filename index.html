@@ -31,7 +31,6 @@
 
             --cor-texto-escuro: #222;
             --cor-texto-claro: #FFF;
-
             --cor-whatsapp: #25D366;
 
             --sombra-produto: 0 8px 20px rgba(0, 0, 0, .15);
@@ -92,11 +91,8 @@
 
         section {
             width: 100%;
-            height: 100vh;
-            min-height: 100vh;
-            padding: 0;
             position: relative;
-            overflow: hidden;
+            text-align: center;
         }
 
 
@@ -105,73 +101,127 @@
            ========================================================= */
 
         .bloco-topo {
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 20px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
             background: var(--cor-topo);
             color: var(--cor-texto-claro);
         }
 
 
         /* =========================================================
-           7. SABÃO LÍQUIDO
+           7. PRODUTOS
            ========================================================= */
 
-        .bloco-sabao {
+        .bloco-sabao .imagem-produto {
             background: var(--cor-sabao);
-            color: var(--cor-texto-escuro);
         }
 
-
-        /* =========================================================
-           8. AMACIANTE
-           ========================================================= */
-
-        .bloco-amaciante {
+        .bloco-amaciante .imagem-produto {
             background: var(--cor-amaciante);
-            color: var(--cor-texto-claro);
         }
 
-
-        /* =========================================================
-           9. BRILHO ALUMÍNIO
-           ========================================================= */
-
-        .bloco-brilho {
+        .bloco-brilho .imagem-produto {
             background: var(--cor-brilho);
-            color: var(--cor-texto-claro);
+        }
+
+        .bloco-detergente .imagem-produto {
+            background: var(--cor-detergente);
+        }
+
+        .bloco-desinfetante .imagem-produto {
+            background: var(--cor-desinfetante);
+        }
+
+        .bloco-alcool .imagem-produto {
+            background: var(--cor-alcool);
+        }
+
+        .bloco-sabao + .bloco-amaciante,
+        .bloco-amaciante + .bloco-brilho,
+        .bloco-brilho + .bloco-detergente,
+        .bloco-detergente + .bloco-desinfetante,
+        .bloco-desinfetante + .bloco-alcool {
+            margin-top: 24px;
         }
 
 
         /* =========================================================
-           10. DETERGENTE
+           8. IMAGEM DOS PRODUTOS
            ========================================================= */
 
-        .bloco-detergente {
-            background: var(--cor-detergente);
+        .bloco-sabao,
+        .bloco-amaciante,
+        .bloco-brilho,
+        .bloco-detergente,
+        .bloco-desinfetante,
+        .bloco-alcool {
+            width: min(100%, 400px);
+            margin: 0 auto;
+        }
+
+        .imagem-produto {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        .img-produto {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+
+        /* =========================================================
+           9. ÍCONE DE PLAY
+           ========================================================= */
+
+        .icone-play {
+            position: absolute;
+            left: 22px;
+            bottom: 25px;
+
+            width: 90px;
+            height: 90px;
+
+            z-index: 2;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .15));
+        }
+
+        .icone-play circle {
+            fill: #000;
+        }
+
+        .icone-play path {
+            fill: #FFF;
+        }
+
+
+        /* =========================================================
+           10. INFORMAÇÕES DOS PRODUTOS
+           ========================================================= */
+
+        .info-produto {
+            min-height: 285px;
+            padding: 42px 20px 55px;
+            background: #FFF;
             color: var(--cor-texto-escuro);
         }
 
 
         /* =========================================================
-           11. DESINFETANTE
-           ========================================================= */
-
-        .bloco-desinfetante {
-            background: var(--cor-desinfetante);
-            color: var(--cor-texto-claro);
-        }
-
-
-        /* =========================================================
-           12. ÁLCOOL PERFUMADO
-           ========================================================= */
-
-        .bloco-alcool {
-            background: var(--cor-alcool);
-            color: var(--cor-texto-claro);
-        }
-
-
-        /* =========================================================
-           13. TÍTULOS
+           11. TÍTULOS
            ========================================================= */
 
         h1,
@@ -193,50 +243,30 @@
 
 
         /* =========================================================
-           14. TEXTOS
+           12. TEXTOS
            ========================================================= */
 
         p {
             max-width: 600px;
-            margin-bottom: 15px;
+            margin: 0 auto 15px;
 
             font-size: 1.3rem;
             line-height: 1.6;
         }
 
-
-        /* =========================================================
-           15. IMAGENS DOS PRODUTOS
-           ========================================================= */
-
-        .img-produto {
-           width: 100%;
-           height: 100%;
-           display: block;
-           object-fit: cover;
-           object-position: center top;
-        }
-
-        .icone-play {
-          position: absolute;
-          left: 50px;
-          bottom: 80px;
-          width: 260px;
-          height: 260px;
-          z-index: 2;
-          filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .15));
+        .info-produto p {
+            margin-bottom: 0;
         }
 
 
         /* =========================================================
-           16. SETA
+           13. SETA
            ========================================================= */
 
         .container-setas {
             display: flex;
             flex-direction: column;
             align-items: center;
-
             margin-top: 45px;
         }
 
@@ -254,12 +284,11 @@
 
 
         /* =========================================================
-           17. RODAPÉ
+           14. RODAPÉ
            ========================================================= */
 
         .bloco-rodape {
             width: 100%;
-            min-height: auto;
             padding: 60px 20px;
 
             background: var(--cor-rodape);
@@ -268,9 +297,13 @@
             text-align: center;
         }
 
+        .bloco-rodape p {
+            margin-bottom: 0;
+        }
+
 
         /* =========================================================
-           18. BOTÃO DO WHATSAPP
+           15. BOTÃO DO WHATSAPP
            ========================================================= */
 
         .whatsapp-flutuante {
@@ -306,12 +339,6 @@
             visibility: visible;
         }
 
-        .whatsapp-flutuante.travado {
-            position: absolute;
-            right: 25px;
-            bottom: 25px;
-        }
-
         .whatsapp-flutuante img {
             width: 36px;
             height: 36px;
@@ -322,7 +349,7 @@
 
 
         /* =========================================================
-           19. RESPONSIVIDADE
+           16. RESPONSIVIDADE
            ========================================================= */
 
         @media (max-width: 768px) {
@@ -338,17 +365,36 @@
                 font-size: 1.1rem;
             }
 
+            .bloco-sabao,
+            .bloco-amaciante,
+            .bloco-brilho,
+            .bloco-detergente,
+            .bloco-desinfetante,
+            .bloco-alcool {
+                width: min(100%, 400px);
+            }
+
+            .imagem-produto {
+                height: 250px;
+            }
+
+            .info-produto {
+                min-height: 285px;
+                padding: 45px 20px 70px;
+            }
+
+            .icone-play {
+                left: 18px;
+                bottom: 18px;
+                width: 72px;
+                height: 72px;
+            }
+
             .whatsapp-flutuante {
                 right: 20px;
                 bottom: 20px;
-
                 width: 60px;
                 height: 60px;
-            }
-
-            .whatsapp-flutuante.travado {
-                right: 20px;
-                bottom: 20px;
             }
 
             .whatsapp-flutuante img {
@@ -383,132 +429,156 @@
 
     <!-- 2. SABÃO LÍQUIDO -->
     <section class="bloco-sabao" id="secao-sabao">
-        <img
-            src="https://picsum.photos/180/260"
-            alt="Sabão Líquido"
-            class="img-produto"
-        >
+        <div class="imagem-produto">
+            <img
+                src="https://picsum.photos/180/260"
+                alt="Sabão Líquido"
+                class="img-produto"
+            >
 
-        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
-    <circle cx="50" cy="50" r="50" fill="#000"></circle>
-    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
-        </svg>
+            <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50"></circle>
+                <path d="M38 25 L72 50 L38 75 Z"></path>
+            </svg>
+        </div>
 
-        <h1>Sabão Líquido</h1>
+        <div class="info-produto">
+            <h1>Sabão Líquido</h1>
 
-        <p>
-            Lava suas roupas com o máximo cuidado, removendo manchas
-            difíceis sem desbotar as cores dos tecidos.
-        </p>
+            <p>
+                Lava suas roupas com o máximo cuidado, removendo manchas
+                difíceis sem desbotar as cores dos tecidos.
+            </p>
+        </div>
     </section>
 
 
     <!-- 3. AMACIANTE -->
     <section class="bloco-amaciante">
-        <img
-            src="https://picsum.photos/180/260"
-            alt="Amaciante"
-            class="img-produto"
-        >
+        <div class="imagem-produto">
+            <img
+                src="https://picsum.photos/180/260"
+                alt="Amaciante"
+                class="img-produto"
+            >
 
-        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
-    <circle cx="50" cy="50" r="50" fill="#000"></circle>
-    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
-</svg>
+            <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50"></circle>
+                <path d="M38 25 L72 50 L38 75 Z"></path>
+            </svg>
+        </div>
 
-        <h1>Amaciante</h1>
+        <div class="info-produto">
+            <h1>Amaciante</h1>
 
-        <p>
-            Deixa suas roupas macias, fáceis de passar e com um perfume
-            sofisticado e prolongado por dias.
-        </p>
+            <p>
+                Deixa suas roupas macias, fáceis de passar e com um perfume
+                sofisticado e prolongado por dias.
+            </p>
+        </div>
     </section>
 
 
     <!-- 4. BRILHO ALUMÍNIO -->
     <section class="bloco-brilho">
-        <img
-            src="https://picsum.photos/180/260"
-            alt="Brilho Alumínio"
-            class="img-produto"
-        >
+        <div class="imagem-produto">
+            <img
+                src="https://picsum.photos/180/260"
+                alt="Brilho Alumínio"
+                class="img-produto"
+            >
 
-        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
-    <circle cx="50" cy="50" r="50" fill="#000"></circle>
-    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
-</svg>
+            <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50"></circle>
+                <path d="M38 25 L72 50 L38 75 Z"></path>
+            </svg>
+        </div>
 
-        <h1>Brilho Alumínio</h1>
+        <div class="info-produto">
+            <h1>Brilho Alumínio</h1>
 
-        <p>
-            Remove manchas, gorduras queimadas e devolve aquele brilho
-            espelhado incrível para suas panelas e utensílios.
-        </p>
+            <p>
+                Remove manchas, gorduras queimadas e devolve aquele brilho
+                espelhado incrível para suas panelas e utensílios.
+            </p>
+        </div>
     </section>
 
 
     <!-- 5. DETERGENTE -->
     <section class="bloco-detergente">
-        <img
-            src="https://picsum.photos/180/260"
-            alt="Detergente"
-            class="img-produto"
-        >
+        <div class="imagem-produto">
+            <img
+                src="https://picsum.photos/180/260"
+                alt="Detergente"
+                class="img-produto"
+            >
 
-        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
-    <circle cx="50" cy="50" r="50" fill="#000"></circle>
-    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
-</svg>
+            <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50"></circle>
+                <path d="M38 25 L72 50 L38 75 Z"></path>
+            </svg>
+        </div>
 
-        <h1>Detergente</h1>
+        <div class="info-produto">
+            <h1>Detergente</h1>
 
-        <p>
-            Ação desengordurante máxima para louças impecáveis rapidamente,
-            sem agredir ou ressecar suas mãos.
-        </p>
+            <p>
+                Ação desengordurante máxima para louças impecáveis rapidamente,
+                sem agredir ou ressecar suas mãos.
+            </p>
+        </div>
     </section>
 
 
     <!-- 6. DESINFETANTE -->
     <section class="bloco-desinfetante">
-        <img
-            src="https://picsum.photos/180/260"
-            alt="Desinfetante"
-            class="img-produto"
-        >
+        <div class="imagem-produto">
+            <img
+                src="https://picsum.photos/180/260"
+                alt="Desinfetante"
+                class="img-produto"
+            >
 
-        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
-    <circle cx="50" cy="50" r="50" fill="#000"></circle>
-    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
-</svg>
+            <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50"></circle>
+                <path d="M38 25 L72 50 L38 75 Z"></path>
+            </svg>
+        </div>
 
-        <h1>Desinfetante</h1>
+        <div class="info-produto">
+            <h1>Desinfetante</h1>
 
-        <p>
-            Elimina germes e bactérias das superfícies, garantindo proteção
-            e um frescor agradável para toda a casa.
-        </p>
+            <p>
+                Elimina germes e bactérias das superfícies, garantindo proteção
+                e um frescor agradável para toda a casa.
+            </p>
+        </div>
     </section>
 
 
     <!-- 7. ÁLCOOL PERFUMADO -->
     <section class="bloco-alcool" id="secao-alcool">
-        <img
-            src="https://picsum.photos/180/260"
-            alt="Álcool Perfumado"
-            class="img-produto"
-        >
+        <div class="imagem-produto">
+            <img
+                src="https://picsum.photos/180/260"
+                alt="Álcool Perfumado"
+                class="img-produto"
+            >
 
-        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
-    <circle cx="50" cy="50" r="50" fill="#000"></circle>
-    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
-</svg>
+            <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="50"></circle>
+                <path d="M38 25 L72 50 L38 75 Z"></path>
+            </svg>
+        </div>
 
-        <h1>Álcool Perfumado</h1>
+        <div class="info-produto">
+            <h1>Álcool Perfumado</h1>
 
-        <p>
-            Secagem ultra rápida para limpeza de superfícies e vidros.
-        </p>
+            <p>
+                Secagem ultra rápida para limpeza de superfícies e vidros.
+            </p>
+        </div>
     </section>
 
 
@@ -550,17 +620,23 @@
             const topoRodape = rodape.offsetTop;
             const alturaTela = window.innerHeight;
 
-            // Mostra o botão 300px antes do Sabão Líquido.
             botaoWhatsApp.classList.toggle(
                 "mostrar",
                 scrollAtual >= inicioSabao - 300
             );
 
-            // Mantém o botão dentro da área antes do rodapé.
-            botaoWhatsApp.classList.toggle(
-                "travado",
-                scrollAtual + alturaTela >= topoRodape
-            );
+            /*
+             * O botão continua fixo durante a navegação.
+             * Quando o rodapé entra na tela, ele deixa de aparecer,
+             * evitando que fique sobre o rodapé.
+             */
+            if (scrollAtual + alturaTela >= topoRodape) {
+                botaoWhatsApp.style.opacity = "0";
+                botaoWhatsApp.style.visibility = "hidden";
+            } else {
+                botaoWhatsApp.style.removeProperty("opacity");
+                botaoWhatsApp.style.removeProperty("visibility");
+            }
         }
 
         window.addEventListener("scroll", atualizarBotaoWhatsApp);
@@ -571,4 +647,3 @@
 
 </body>
 </html>
-```
