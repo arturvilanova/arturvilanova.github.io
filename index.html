@@ -143,13 +143,7 @@
             background: var(--cor-alcool);
         }
 
-        .bloco-sabao + .bloco-amaciante,
-        .bloco-amaciante + .bloco-brilho,
-        .bloco-brilho + .bloco-detergente,
-        .bloco-detergente + .bloco-desinfetante,
-        .bloco-desinfetante + .bloco-alcool {
-            margin-top: 24px;
-        }
+        /* Sem espaço entre as seções de produtos. */
 
 
         /* =========================================================
@@ -163,7 +157,13 @@
         .bloco-desinfetante,
         .bloco-alcool {
             width: min(100%, 400px);
+            height: 100vh;
+            min-height: 100vh;
             margin: 0 auto;
+            padding: 0;
+
+            display: flex;
+            flex-direction: column;
         }
 
         .imagem-produto {
@@ -192,8 +192,8 @@
             left: 22px;
             bottom: 25px;
 
-            width: 90px;
-            height: 90px;
+            width: 55px;
+            height: 55px;
 
             z-index: 2;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .15));
@@ -213,10 +213,15 @@
            ========================================================= */
 
         .info-produto {
-            min-height: 285px;
+            flex: 1;
             padding: 42px 20px 55px;
             background: #FFF;
             color: var(--cor-texto-escuro);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
 
 
@@ -371,7 +376,9 @@
             .bloco-detergente,
             .bloco-desinfetante,
             .bloco-alcool {
-                width: min(100%, 400px);
+                width: 100%;
+                height: 100vh;
+                min-height: 100vh;
             }
 
             .imagem-produto {
@@ -379,15 +386,14 @@
             }
 
             .info-produto {
-                min-height: 285px;
                 padding: 45px 20px 70px;
             }
 
             .icone-play {
                 left: 18px;
                 bottom: 18px;
-                width: 72px;
-                height: 72px;
+                width: 50px;
+                height: 50px;
             }
 
             .whatsapp-flutuante {
@@ -646,4 +652,4 @@
     </script>
 
 </body>
-</html>
+                                                     </html>
