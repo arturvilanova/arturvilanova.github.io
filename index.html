@@ -92,16 +92,11 @@
 
         section {
             width: 100%;
+            height: 100vh;
             min-height: 100vh;
-            padding: 40px 20px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
+            padding: 0;
             position: relative;
-            text-align: center;
+            overflow: hidden;
         }
 
 
@@ -215,13 +210,21 @@
            ========================================================= */
 
         .img-produto {
-            width: 180px;
-            height: 260px;
-            margin-bottom: 25px;
+           width: 100%;
+           height: 100%;
+           display: block;
+           object-fit: cover;
+           object-position: center top;
+        }
 
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: var(--sombra-produto);
+        .icone-play {
+          position: absolute;
+          left: 50px;
+          bottom: 80px;
+          width: 260px;
+          height: 260px;
+          z-index: 2;
+          filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .15));
         }
 
 
@@ -386,6 +389,11 @@
             class="img-produto"
         >
 
+        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="50" fill="#000"></circle>
+    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
+        </svg>
+
         <h1>Sabão Líquido</h1>
 
         <p>
@@ -402,6 +410,11 @@
             alt="Amaciante"
             class="img-produto"
         >
+
+        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="50" fill="#000"></circle>
+    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
+</svg>
 
         <h1>Amaciante</h1>
 
@@ -420,6 +433,11 @@
             class="img-produto"
         >
 
+        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="50" fill="#000"></circle>
+    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
+</svg>
+
         <h1>Brilho Alumínio</h1>
 
         <p>
@@ -436,6 +454,11 @@
             alt="Detergente"
             class="img-produto"
         >
+
+        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="50" fill="#000"></circle>
+    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
+</svg>
 
         <h1>Detergente</h1>
 
@@ -454,6 +477,11 @@
             class="img-produto"
         >
 
+        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="50" fill="#000"></circle>
+    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
+</svg>
+
         <h1>Desinfetante</h1>
 
         <p>
@@ -470,6 +498,11 @@
             alt="Álcool Perfumado"
             class="img-produto"
         >
+
+        <svg class="icone-play" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="50" fill="#000"></circle>
+    <path d="M38 25 L72 50 L38 75 Z" fill="#fff"></path>
+</svg>
 
         <h1>Álcool Perfumado</h1>
 
