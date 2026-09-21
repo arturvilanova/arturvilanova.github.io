@@ -1055,13 +1055,15 @@
         const blocoSabao = document.querySelector("#secao-sabao");
         const rodape = document.querySelector("#secao-rodape");
 
+        let whatsappPresoNoRodape = false;
+
         function atualizarBotaoWhatsApp() {
             if (!botaoWhatsApp || !blocoSabao || !rodape) return;
 
             const scrollAtual = window.scrollY;
             const inicioSabao = blocoSabao.offsetTop;
-            const topoRodape = rodape.offsetTop;
             const alturaTela = window.innerHeight;
+            const topoRodapeNaTela = rodape.getBoundingClientRect().top;
 
             botaoWhatsApp.classList.toggle(
                 "mostrar",
@@ -1069,30 +1071,52 @@
             );
 
             /*
-             * Enquanto o rodapé ainda está longe, o WhatsApp fica no canto
-             * inferior direito. Quando o rodapé entra na tela, o botão sobe
-             * e para acima dele, sem ficar sobre a área roxa.
+             * O botão usa apenas dois estados.
+             *
+             * 1. Durante a navegação: fica FIXO no canto inferior direito.
+             * 2. Quando o rodapé chega à tela: vira ABSOLUTO e é colocado
+             *    uma única vez acima do rodapé. Assim ele acompanha o rodapé
+             *    sem recalcular sua posição a cada movimento do dedo.
+             *
+             * Isso evita o efeito de "tentativa de reposicionamento" que
+             * acontecia quando o bottom era recalculado continuamente.
              */
-            botaoWhatsApp.style.position = "fixed";
-            botaoWhatsApp.style.top = "auto";
+            const rodapeEntrouNaTela = topoRodapeNaTela <= alturaTela;
 
-            const topoRodapeNaTela = rodape.getBoundingClientRect().top;
-            const alturaBotao = botaoWhatsApp.offsetHeight || 65;
-            const distanciaDoRodape = 20;
-            const rodapeEntrouNaTela = topoRodapeNaTela < alturaTela;
+            if (rodapeEntrouNaTela && !whatsappPresoNoRodape) {
+                whatsappPresoNoRodape = true;
 
-            if (rodapeEntrouNaTela) {
-                const bottomAcimaDoRodape = alturaTela - topoRodapeNaTela + distanciaDoRodape;
-                botaoWhatsApp.style.bottom = `${Math.max(25, bottomAcimaDoRodape)}px`;
-            } else {
+                const alturaBotao = botaoWhatsApp.offsetHeight || 65;
+                const distanciaDoRodape = 20;
+
+                botaoWhatsApp.style.position = "absolute";
+                botaoWhatsApp.style.top = `${rodape.offsetTop - alturaBotao - distanciaDoRodape}px`;
+                botaoWhatsApp.style.bottom = "auto";
+            }
+
+            if (!rodapeEntrouNaTela && whatsappPresoNoRodape) {
+                whatsappPresoNoRodape = false;
+
+                botaoWhatsApp.style.position = "fixed";
+                botaoWhatsApp.style.top = "auto";
                 botaoWhatsApp.style.bottom = "25px";
+            }
+
+            /*
+             * Se a tela mudar de tamanho enquanto o botão estiver preso,
+             * atualiza somente a posição absoluta do rodapé.
+             */
+            if (whatsappPresoNoRodape) {
+                const alturaBotao = botaoWhatsApp.offsetHeight || 65;
+                const distanciaDoRodape = 20;
+                botaoWhatsApp.style.top = `${rodape.offsetTop - alturaBotao - distanciaDoRodape}px`;
             }
 
             botaoWhatsApp.style.removeProperty("opacity");
             botaoWhatsApp.style.removeProperty("visibility");
         }
 
-        window.addEventListener("scroll", atualizarBotaoWhatsApp);
+        window.addEventListener("scroll", atualizarBotaoWhatsApp, { passive: true });
         window.addEventListener("resize", atualizarBotaoWhatsApp);
 
         atualizarBotaoWhatsApp();
