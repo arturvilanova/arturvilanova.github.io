@@ -186,7 +186,7 @@
 
 
         /* =========================================================
-           9. VÍDEO DOS PRODUTOS
+           9. VÍDEOS DOS PRODUTOS
            ========================================================= */
 
         .video-produto {
@@ -196,21 +196,23 @@
             height: 100%;
             display: block;
             object-fit: contain;
+            object-position: center;
             background: #000;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: opacity .22s ease, visibility .22s ease;
+            transition: opacity .18s ease, visibility .18s ease;
         }
 
-        .imagem-produto.video-ativo::after {
+        .imagem-produto::after {
             content: "";
             position: absolute;
             inset: 0;
             background: #000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity .18s ease;
+            z-index: 1;
+            transition: opacity .15s ease;
         }
 
         .imagem-produto.iniciando-video::after {
@@ -249,11 +251,25 @@
             display: block;
         }
 
-        .icone-video circle { fill: #000; }
-        .icone-video path { fill: #FFF; }
-        .icone-video-pause { display: none; }
-        .botao-video.reproduzindo .icone-video-play { display: none; }
-        .botao-video.reproduzindo .icone-video-pause { display: block; }
+        .icone-video circle {
+            fill: #000;
+        }
+
+        .icone-video path {
+            fill: #FFF;
+        }
+
+        .icone-video-pause {
+            display: none;
+        }
+
+        .botao-video.reproduzindo .icone-video-play {
+            display: none;
+        }
+
+        .botao-video.reproduzindo .icone-video-pause {
+            display: block;
+        }
 
         .botao-video:focus-visible {
             outline: 3px solid #FFF;
@@ -263,12 +279,12 @@
 
 
         /* =========================================================
-           10. ÍCONE DE PLAY
+           10. ÍCONE DE VÍDEO
            ========================================================= */
 
 
         /* =========================================================
-           10. INFORMAÇÕES DOS PRODUTOS
+           11. INFORMAÇÕES DOS PRODUTOS
            ========================================================= */
 
         .info-produto {
@@ -285,7 +301,7 @@
 
 
         /* =========================================================
-           11. TÍTULOS
+           12. TÍTULOS
            ========================================================= */
 
         h1,
@@ -308,7 +324,7 @@
 
 
         /* =========================================================
-           12. TEXTOS
+           13. TEXTOS
            ========================================================= */
 
         p {
@@ -325,7 +341,7 @@
 
 
         /* =========================================================
-           13. SETA
+           14. SETA
            ========================================================= */
 
         .container-setas {
@@ -349,7 +365,7 @@
 
 
         /* =========================================================
-           14. RODAPÉ
+           15. RODAPÉ
            ========================================================= */
 
         .bloco-rodape {
@@ -368,7 +384,7 @@
 
 
         /* =========================================================
-           15. BOTÃO DO WHATSAPP
+           16. BOTÃO DO WHATSAPP
            ========================================================= */
 
         .whatsapp-flutuante {
@@ -414,7 +430,7 @@
 
 
         /* =========================================================
-           16. RESPONSIVIDADE
+           17. RESPONSIVIDADE
            ========================================================= */
 
         @media (max-width: 768px) {
@@ -499,28 +515,8 @@
                 class="img-produto"
             >
 
-            <video class="video-produto" playsinline preload="metadata">
+            <video class="video-produto" playsinline preload="metadata" aria-hidden="true">
                 <source src="Imagens/Sabao_liquido.mp4" type="video/mp4">
-            </video>
-
-            <video class="video-produto" playsinline preload="metadata">
-                <source src="Imagens/Amaciante.mp4" type="video/mp4">
-            </video>
-
-            <video class="video-produto" playsinline preload="metadata">
-                <source src="Imagens/Brilho.mp4" type="video/mp4">
-            </video>
-
-            <video class="video-produto" playsinline preload="metadata">
-                <source src="Imagens/Detergente.mp4" type="video/mp4">
-            </video>
-
-            <video class="video-produto" playsinline preload="metadata">
-                <source src="Imagens/Desinfetante.mp4" type="video/mp4">
-            </video>
-
-            <video class="video-produto" playsinline preload="metadata">
-                <source src="Imagens/Alcool_perfumado.mp4" type="video/mp4">
             </video>
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
@@ -555,6 +551,10 @@
                 class="img-produto"
             >
 
+            <video class="video-produto" playsinline preload="metadata" aria-hidden="true">
+                <source src="Imagens/Amaciante.mp4" type="video/mp4">
+            </video>
+
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
                     <circle cx="50" cy="50" r="50"></circle>
@@ -586,6 +586,10 @@
                 alt="Brilho Alumínio"
                 class="img-produto"
             >
+
+            <video class="video-produto" playsinline preload="metadata" aria-hidden="true">
+                <source src="Imagens/Brilho.mp4" type="video/mp4">
+            </video>
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
@@ -619,6 +623,10 @@
                 class="img-produto"
             >
 
+            <video class="video-produto" playsinline preload="metadata" aria-hidden="true">
+                <source src="Imagens/Detergente.mp4" type="video/mp4">
+            </video>
+
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
                     <circle cx="50" cy="50" r="50"></circle>
@@ -650,6 +658,10 @@
                 alt="Desinfetante"
                 class="img-produto"
             >
+
+            <video class="video-produto" playsinline preload="metadata" aria-hidden="true">
+                <source src="Imagens/Desinfetante.mp4" type="video/mp4">
+            </video>
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
@@ -683,5 +695,168 @@
                 class="img-produto"
             >
 
+            <video class="video-produto" playsinline preload="metadata" aria-hidden="true">
+                <source src="Imagens/Alcool_perfumado.mp4" type="video/mp4">
+            </video>
+
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
-                <svg class="
+                <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="50"></circle>
+                    <path d="M38 25 L72 50 L38 75 Z"></path>
+                </svg>
+                <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="50"></circle>
+                    <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="info-produto">
+            <h1>Álcool Perfumado</h1>
+
+            <p>
+                Secagem ultra rápida para limpeza de superfícies e vidros.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- 8. RODAPÉ -->
+    <footer class="bloco-rodape" id="secao-rodape">
+        <p>
+            &copy; 2026 Meus Produtos de Limpeza.
+            Todos os direitos reservados.
+        </p>
+    </footer>
+
+
+    <!-- BOTÃO DO WHATSAPP -->
+    <a
+        href="https://wa.me/"
+        class="whatsapp-flutuante"
+        id="btn-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp"
+    >
+        <img
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/whatsapp.svg"
+            alt=""
+        >
+    </a>
+
+
+    <script>
+        const botaoWhatsApp = document.querySelector("#btn-whatsapp");
+        const blocoSabao = document.querySelector("#secao-sabao");
+        const rodape = document.querySelector("#secao-rodape");
+
+        function atualizarBotaoWhatsApp() {
+            if (!botaoWhatsApp || !blocoSabao || !rodape) return;
+
+            const scrollAtual = window.scrollY;
+            const inicioSabao = blocoSabao.offsetTop;
+            const topoRodape = rodape.offsetTop;
+            const alturaTela = window.innerHeight;
+
+            botaoWhatsApp.classList.toggle(
+                "mostrar",
+                scrollAtual >= inicioSabao - 300
+            );
+
+            /*
+             * O botão continua fixo durante a navegação.
+             * Quando o rodapé entra na tela, ele deixa de aparecer,
+             * evitando que fique sobre o rodapé.
+             */
+            if (scrollAtual + alturaTela >= topoRodape) {
+                botaoWhatsApp.style.opacity = "0";
+                botaoWhatsApp.style.visibility = "hidden";
+            } else {
+                botaoWhatsApp.style.removeProperty("opacity");
+                botaoWhatsApp.style.removeProperty("visibility");
+            }
+        }
+
+        window.addEventListener("scroll", atualizarBotaoWhatsApp);
+        window.addEventListener("resize", atualizarBotaoWhatsApp);
+
+        atualizarBotaoWhatsApp();
+    </script>
+
+    <!-- CONTROLE DOS VÍDEOS DOS PRODUTOS -->
+    <script>
+        (function () {
+            const areasDeVideo = document.querySelectorAll(".imagem-produto");
+
+            areasDeVideo.forEach(function (area) {
+                const video = area.querySelector(".video-produto");
+                const botao = area.querySelector(".botao-video");
+
+                if (!video || !botao) return;
+
+                function mostrarEstadoPlay() {
+                    area.classList.remove("video-ativo", "iniciando-video");
+                    botao.classList.remove("reproduzindo");
+                    botao.setAttribute("aria-label", "Reproduzir vídeo");
+                    botao.setAttribute("aria-pressed", "false");
+                }
+
+                function mostrarEstadoPause() {
+                    area.classList.add("video-ativo");
+                    area.classList.remove("iniciando-video");
+                    botao.classList.add("reproduzindo");
+                    botao.setAttribute("aria-label", "Pausar vídeo");
+                    botao.setAttribute("aria-pressed", "true");
+                }
+
+                botao.addEventListener("click", async function (evento) {
+                    evento.preventDefault();
+                    evento.stopPropagation();
+
+                    if (video.paused || video.ended) {
+                        area.classList.add("iniciando-video");
+
+                        try {
+                            await video.play();
+                            mostrarEstadoPause();
+                        } catch (erro) {
+                            mostrarEstadoPlay();
+                            console.warn("Não foi possível reproduzir o vídeo:", erro);
+                        }
+                    } else {
+                        video.pause();
+                        botao.classList.remove("reproduzindo");
+                        botao.setAttribute("aria-label", "Reproduzir vídeo");
+                        botao.setAttribute("aria-pressed", "false");
+                    }
+                });
+
+                video.addEventListener("play", function () {
+                    mostrarEstadoPause();
+                });
+
+                video.addEventListener("pause", function () {
+                    if (!video.ended) {
+                        botao.classList.remove("reproduzindo");
+                        botao.setAttribute("aria-label", "Reproduzir vídeo");
+                        botao.setAttribute("aria-pressed", "false");
+                    }
+                });
+
+                video.addEventListener("ended", function () {
+                    video.pause();
+                    video.currentTime = 0;
+                    mostrarEstadoPlay();
+                });
+
+                video.addEventListener("error", function () {
+                    mostrarEstadoPlay();
+                    console.warn("Vídeo não encontrado ou não pôde ser carregado:", video.currentSrc);
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
