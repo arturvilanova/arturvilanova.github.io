@@ -159,7 +159,6 @@
         .bloco-desinfetante,
         .bloco-alcool {
             width: min(100%, 400px);
-            height: 100vh;
             min-height: 100vh;
             margin: 0 auto;
             padding: 0;
@@ -290,15 +289,89 @@
            ========================================================= */
 
         .info-produto {
-            flex: 1;
-            padding: 42px 20px 55px;
+            flex: 0 0 auto;
+            min-height: max(0px, calc(100vh - 300px));
+            padding: 35px 20px 45px;
             background: #FFF;
             color: var(--cor-texto-escuro);
 
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .carrossel-produto {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            touch-action: pan-y;
+            user-select: none;
+            cursor: grab;
+        }
+
+        .carrossel-produto.arrastando {
+            cursor: grabbing;
+        }
+
+        .carrossel-textos {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            min-height: 0;
+            overflow: hidden;
+            transition: height .28s ease;
+        }
+
+        .texto-carrossel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(4px);
+            transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+            pointer-events: none;
+        }
+
+        .texto-carrossel.ativo {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: opacity .24s ease, transform .24s ease;
+        }
+
+        .indicadores-carrossel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .bolinha-carrossel {
+            width: 14px;
+            height: 14px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: #D9D9D9;
+            cursor: pointer;
+            transition: background-color .25s ease, transform .25s ease;
+        }
+
+        .bolinha-carrossel.ativa {
+            background: #000;
+            transform: scale(1.04);
+        }
+
+        .bolinha-carrossel:focus-visible {
+            outline: 2px solid #000;
+            outline-offset: 3px;
         }
 
 
@@ -484,12 +557,26 @@
             .bloco-desinfetante,
             .bloco-alcool {
                 width: 100%;
-                height: 100vh;
                 min-height: 100vh;
             }
 
             .info-produto {
-                padding: 45px 20px 70px;
+                min-height: max(0px, calc(100vh - 75vw));
+                padding: 30px 20px 42px;
+            }
+
+            .carrossel-textos {
+                max-width: 340px;
+            }
+
+            .indicadores-carrossel {
+                gap: 13px;
+                margin-top: 20px;
+            }
+
+            .bolinha-carrossel {
+                width: 14px;
+                height: 14px;
             }
 
             .botao-video {
@@ -576,10 +663,33 @@
         <div class="info-produto">
             <h1>Sabão Líquido</h1>
 
-            <p>
-                Lava suas roupas com o máximo cuidado, removendo manchas
-                difíceis sem desbotar as cores dos tecidos.
-            </p>
+            <div class="carrossel-produto" data-carrossel>
+                <div class="carrossel-textos">
+                <p class="texto-carrossel ativo" data-slide="0">
+                    Limpeza eficiente para suas roupas.
+                </p>
+                <p class="texto-carrossel" data-slide="1">
+                    Ajuda a remover manchas do dia a dia.
+                </p>
+                <p class="texto-carrossel" data-slide="2">
+                    Cuida dos tecidos durante a lavagem.
+                </p>
+                <p class="texto-carrossel" data-slide="3">
+                    Deixa uma sensação agradável de limpeza.
+                </p>
+                <p class="texto-carrossel" data-slide="4">
+                    Ideal para facilitar sua rotina.
+                </p>
+                </div>
+
+                <div class="indicadores-carrossel" aria-label="Informações do produto">
+                <button class="bolinha-carrossel ativa" type="button" data-slide="0" aria-label="Ver informação 1 de 5" aria-current="true"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="1" aria-label="Ver informação 2 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="2" aria-label="Ver informação 3 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="3" aria-label="Ver informação 4 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="4" aria-label="Ver informação 5 de 5" aria-current="false"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -612,10 +722,33 @@
         <div class="info-produto">
             <h1>Amaciante</h1>
 
-            <p>
-                Deixa suas roupas macias, fáceis de passar e com um perfume
-                sofisticado e prolongado por dias.
-            </p>
+            <div class="carrossel-produto" data-carrossel>
+                <div class="carrossel-textos">
+                <p class="texto-carrossel ativo" data-slide="0">
+                    Mais maciez para suas roupas.
+                </p>
+                <p class="texto-carrossel" data-slide="1">
+                    Ajuda a deixar os tecidos mais confortáveis.
+                </p>
+                <p class="texto-carrossel" data-slide="2">
+                    Perfume agradável após a lavagem.
+                </p>
+                <p class="texto-carrossel" data-slide="3">
+                    Facilita o cuidado com as peças.
+                </p>
+                <p class="texto-carrossel" data-slide="4">
+                    Um toque especial para sua roupa.
+                </p>
+                </div>
+
+                <div class="indicadores-carrossel" aria-label="Informações do produto">
+                <button class="bolinha-carrossel ativa" type="button" data-slide="0" aria-label="Ver informação 1 de 5" aria-current="true"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="1" aria-label="Ver informação 2 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="2" aria-label="Ver informação 3 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="3" aria-label="Ver informação 4 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="4" aria-label="Ver informação 5 de 5" aria-current="false"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -648,10 +781,33 @@
         <div class="info-produto">
             <h1>Brilho Alumínio</h1>
 
-            <p>
-                Remove manchas, gorduras queimadas e devolve aquele brilho
-                espelhado incrível para suas panelas e utensílios.
-            </p>
+            <div class="carrossel-produto" data-carrossel>
+                <div class="carrossel-textos">
+                <p class="texto-carrossel ativo" data-slide="0">
+                    Ajuda a recuperar o brilho dos utensílios.
+                </p>
+                <p class="texto-carrossel" data-slide="1">
+                    Remove sujeiras do uso cotidiano.
+                </p>
+                <p class="texto-carrossel" data-slide="2">
+                    Facilita a limpeza de panelas e metais.
+                </p>
+                <p class="texto-carrossel" data-slide="3">
+                    Deixa as peças com aparência renovada.
+                </p>
+                <p class="texto-carrossel" data-slide="4">
+                    Mais brilho para sua rotina de limpeza.
+                </p>
+                </div>
+
+                <div class="indicadores-carrossel" aria-label="Informações do produto">
+                <button class="bolinha-carrossel ativa" type="button" data-slide="0" aria-label="Ver informação 1 de 5" aria-current="true"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="1" aria-label="Ver informação 2 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="2" aria-label="Ver informação 3 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="3" aria-label="Ver informação 4 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="4" aria-label="Ver informação 5 de 5" aria-current="false"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -684,10 +840,33 @@
         <div class="info-produto">
             <h1>Detergente</h1>
 
-            <p>
-                Ação desengordurante máxima para louças impecáveis rapidamente,
-                sem agredir ou ressecar suas mãos.
-            </p>
+            <div class="carrossel-produto" data-carrossel>
+                <div class="carrossel-textos">
+                <p class="texto-carrossel ativo" data-slide="0">
+                    Limpeza prática para a louça.
+                </p>
+                <p class="texto-carrossel" data-slide="1">
+                    Ajuda a remover gordura com facilidade.
+                </p>
+                <p class="texto-carrossel" data-slide="2">
+                    Ideal para a limpeza do dia a dia.
+                </p>
+                <p class="texto-carrossel" data-slide="3">
+                    Facilita a lavagem de pratos e utensílios.
+                </p>
+                <p class="texto-carrossel" data-slide="4">
+                    Uma solução simples para sua cozinha.
+                </p>
+                </div>
+
+                <div class="indicadores-carrossel" aria-label="Informações do produto">
+                <button class="bolinha-carrossel ativa" type="button" data-slide="0" aria-label="Ver informação 1 de 5" aria-current="true"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="1" aria-label="Ver informação 2 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="2" aria-label="Ver informação 3 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="3" aria-label="Ver informação 4 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="4" aria-label="Ver informação 5 de 5" aria-current="false"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -720,10 +899,33 @@
         <div class="info-produto">
             <h1>Desinfetante</h1>
 
-            <p>
-                Elimina germes e bactérias das superfícies, garantindo proteção
-                e um frescor agradável para toda a casa.
-            </p>
+            <div class="carrossel-produto" data-carrossel>
+                <div class="carrossel-textos">
+                <p class="texto-carrossel ativo" data-slide="0">
+                    Limpeza e sensação de frescor.
+                </p>
+                <p class="texto-carrossel" data-slide="1">
+                    Ideal para diferentes superfícies da casa.
+                </p>
+                <p class="texto-carrossel" data-slide="2">
+                    Ajuda a manter os ambientes agradáveis.
+                </p>
+                <p class="texto-carrossel" data-slide="3">
+                    Perfuma enquanto você cuida da casa.
+                </p>
+                <p class="texto-carrossel" data-slide="4">
+                    Praticidade para a rotina de limpeza.
+                </p>
+                </div>
+
+                <div class="indicadores-carrossel" aria-label="Informações do produto">
+                <button class="bolinha-carrossel ativa" type="button" data-slide="0" aria-label="Ver informação 1 de 5" aria-current="true"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="1" aria-label="Ver informação 2 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="2" aria-label="Ver informação 3 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="3" aria-label="Ver informação 4 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="4" aria-label="Ver informação 5 de 5" aria-current="false"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -756,9 +958,33 @@
         <div class="info-produto">
             <h1>Álcool Perfumado</h1>
 
-            <p>
-                Secagem ultra rápida para limpeza de superfícies e vidros.
-            </p>
+            <div class="carrossel-produto" data-carrossel>
+                <div class="carrossel-textos">
+                <p class="texto-carrossel ativo" data-slide="0">
+                    Secagem rápida para a limpeza diária.
+                </p>
+                <p class="texto-carrossel" data-slide="1">
+                    Prático para diferentes superfícies.
+                </p>
+                <p class="texto-carrossel" data-slide="2">
+                    Ajuda a deixar os ambientes renovados.
+                </p>
+                <p class="texto-carrossel" data-slide="3">
+                    Perfume agradável durante a limpeza.
+                </p>
+                <p class="texto-carrossel" data-slide="4">
+                    Uma opção prática para sua rotina.
+                </p>
+                </div>
+
+                <div class="indicadores-carrossel" aria-label="Informações do produto">
+                <button class="bolinha-carrossel ativa" type="button" data-slide="0" aria-label="Ver informação 1 de 5" aria-current="true"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="1" aria-label="Ver informação 2 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="2" aria-label="Ver informação 3 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="3" aria-label="Ver informação 4 de 5" aria-current="false"></button>
+                <button class="bolinha-carrossel" type="button" data-slide="4" aria-label="Ver informação 5 de 5" aria-current="false"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -908,6 +1134,128 @@
                 });
             });
         })();
+    </script>
+
+
+    <!-- CARROSSEL DAS INFORMAÇÕES DOS PRODUTOS -->
+    <script>
+        (function () {
+            const carrosseis = document.querySelectorAll("[data-carrossel]");
+
+            carrosseis.forEach(function (carrossel) {
+                const textos = Array.from(carrossel.querySelectorAll(".texto-carrossel"));
+                const bolinhas = Array.from(carrossel.querySelectorAll(".bolinha-carrossel"));
+                let indiceAtual = 0;
+                let inicioX = 0;
+                let arrastando = false;
+                let bloqueadoDuranteTransicao = false;
+                const duracaoSaida = 200;
+
+                function ajustarAltura() {
+                    const alturaNecessaria = Math.max.apply(
+                        null,
+                        textos.map(function (texto) {
+                            return texto.scrollHeight;
+                        })
+                    );
+
+                    const alturaAtual = textos[indiceAtual]?.scrollHeight || 0;
+                    carrossel.querySelector(".carrossel-textos").style.height =
+                        Math.max(alturaNecessaria, alturaAtual) + "px";
+                }
+
+                function atualizarIndicadores() {
+                    bolinhas.forEach(function (bolinha, indice) {
+                        const ativa = indice === indiceAtual;
+                        bolinha.classList.toggle("ativa", ativa);
+                        bolinha.setAttribute("aria-current", ativa ? "true" : "false");
+                    });
+                }
+
+                function mostrarSlide(novoIndice) {
+                    if (bloqueadoDuranteTransicao || !textos.length) return;
+
+                    novoIndice = (novoIndice + textos.length) % textos.length;
+                    if (novoIndice === indiceAtual) return;
+
+                    const textoAtual = textos[indiceAtual];
+                    const proximoTexto = textos[novoIndice];
+                    bloqueadoDuranteTransicao = true;
+
+                    textoAtual.classList.remove("ativo");
+
+                    setTimeout(function () {
+                        indiceAtual = novoIndice;
+                        proximoTexto.classList.add("ativo");
+                        atualizarIndicadores();
+                        ajustarAltura();
+                        bloqueadoDuranteTransicao = false;
+                    }, duracaoSaida);
+                }
+
+                function avancar() {
+                    mostrarSlide(indiceAtual + 1);
+                }
+
+                function voltar() {
+                    mostrarSlide(indiceAtual - 1);
+                }
+
+                bolinhas.forEach(function (bolinha, indice) {
+                    bolinha.addEventListener("click", function () {
+                        mostrarSlide(indice);
+                    });
+                });
+
+                carrossel.addEventListener("pointerdown", function (evento) {
+                    if (evento.target.closest("button")) return;
+
+                    inicioX = evento.clientX;
+                    arrastando = true;
+                    carrossel.classList.add("arrastando");
+                    carrossel.setPointerCapture?.(evento.pointerId);
+                });
+
+                carrossel.addEventListener("pointerup", function (evento) {
+                    if (!arrastando) return;
+
+                    const distancia = evento.clientX - inicioX;
+                    const limite = 45;
+
+                    arrastando = false;
+                    carrossel.classList.remove("arrastando");
+
+                    if (Math.abs(distancia) < limite) return;
+
+                    if (distancia < 0) {
+                        avancar();
+                    } else {
+                        voltar();
+                    }
+                });
+
+                carrossel.addEventListener("pointercancel", function () {
+                    arrastando = false;
+                    carrossel.classList.remove("arrastando");
+                });
+
+                carrossel.addEventListener("lostpointercapture", function () {
+                    arrastando = false;
+                    carrossel.classList.remove("arrastando");
+                });
+
+                atualizarIndicadores();
+                ajustarAltura();
+
+                window.addEventListener("resize", ajustarAltura);
+            });
+        })();
+    </script>
+
+
+    <script>
+        const anoAtual = document.querySelector("#ano-atual");
+        if (anoAtual) anoAtual.textContent = new Date().getFullYear();
     </script>
 
 </body>
