@@ -31,6 +31,8 @@
 
             --cor-texto-escuro: #222;
             --cor-texto-claro: #FFF;
+            --cor-titulo-principal: #0757B9;
+            --cor-contorno-titulo: #FFF;
             --cor-whatsapp: #25D366;
 
             --sombra-produto: 0 8px 20px rgba(0, 0, 0, .15);
@@ -317,9 +319,14 @@
         }
 
         .titulo-principal {
-            max-width: 1000px;
-            font-size: 6rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+            width: min(100%, 1250px);
+            max-width: 1250px;
+            font-size: clamp(4.5rem, 7.2vw, 7.5rem);
+            line-height: .95;
+            color: var(--cor-titulo-principal);
+            -webkit-text-stroke: 9px var(--cor-contorno-titulo);
+            paint-order: stroke fill;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, .12);
         }
 
 
@@ -370,16 +377,36 @@
 
         .bloco-rodape {
             width: 100%;
-            padding: 60px 20px;
-
+            padding: 42px 20px 46px;
             background: var(--cor-rodape);
             color: var(--cor-texto-claro);
-
             text-align: center;
         }
 
-        .bloco-rodape p {
-            margin-bottom: 0;
+        .rodape-conteudo {
+            width: min(100%, 900px);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rodape-direitos,
+        .rodape-proprietario {
+            margin: 0;
+            max-width: none;
+            line-height: 1.4;
+        }
+
+        .rodape-direitos {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .rodape-proprietario {
+            font-size: 1.05rem;
+            font-weight: 700;
         }
 
 
@@ -435,7 +462,10 @@
 
         @media (max-width: 768px) {
             .titulo-principal {
-                font-size: 2.5rem;
+                width: 100%;
+                font-size: clamp(3.3rem, 12vw, 5rem);
+                line-height: .98;
+                -webkit-text-stroke: 6px var(--cor-contorno-titulo);
             }
 
             h1 {
@@ -467,6 +497,18 @@
                 bottom: 18px;
                 width: 50px;
                 height: 50px;
+            }
+
+            .bloco-rodape {
+                padding: 34px 18px 38px;
+            }
+
+            .rodape-direitos {
+                font-size: .9rem;
+            }
+
+            .rodape-proprietario {
+                font-size: .95rem;
             }
 
             .whatsapp-flutuante {
@@ -723,10 +765,15 @@
 
     <!-- 8. RODAPÉ -->
     <footer class="bloco-rodape" id="secao-rodape">
-        <p>
-            &copy; 2026 Meus Produtos de Limpeza.
-            Todos os direitos reservados.
-        </p>
+        <div class="rodape-conteudo">
+            <p class="rodape-direitos">
+                &copy; <span id="ano-atual">2026</span> Todos os direitos reservados.
+            </p>
+
+            <p class="rodape-proprietario">
+                Proprietário: @artur.vilanova
+            </p>
+        </div>
     </footer>
 
 
@@ -747,6 +794,11 @@
 
 
     <script>
+        const anoAtual = document.querySelector("#ano-atual");
+        if (anoAtual) {
+            anoAtual.textContent = new Date().getFullYear();
+        }
+
         const botaoWhatsApp = document.querySelector("#btn-whatsapp");
         const blocoSabao = document.querySelector("#secao-sabao");
         const rodape = document.querySelector("#secao-rodape");
