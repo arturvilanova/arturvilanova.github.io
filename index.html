@@ -687,7 +687,7 @@
             <div class="carrossel-produto" data-carrossel>
                 <div class="carrossel-textos">
                 <p class="texto-carrossel ativo" data-slide="0">
-                    A combinação perfeita entre limpeza profunda e o cuidado máximo que os tecidos e a sua família merecem.
+                    Limpeza eficiente para suas roupas.
                 </p>
                 <p class="texto-carrossel" data-slide="1">
                     Ajuda a remover manchas do dia a dia.
@@ -1069,13 +1069,25 @@
             );
 
             /*
-             * O WhatsApp permanece fixo no canto inferior direito.
-             * Quando o usuário chega ao final da página, ele naturalmente
-             * fica sobre a área do rodapé, exatamente como no layout desejado.
+             * Enquanto o rodapé ainda está longe, o WhatsApp fica no canto
+             * inferior direito. Quando o rodapé entra na tela, o botão sobe
+             * e para acima dele, sem ficar sobre a área roxa.
              */
             botaoWhatsApp.style.position = "fixed";
             botaoWhatsApp.style.top = "auto";
-            botaoWhatsApp.style.bottom = "25px";
+
+            const topoRodapeNaTela = rodape.getBoundingClientRect().top;
+            const alturaBotao = botaoWhatsApp.offsetHeight || 65;
+            const distanciaDoRodape = 20;
+            const rodapeEntrouNaTela = topoRodapeNaTela < alturaTela;
+
+            if (rodapeEntrouNaTela) {
+                const bottomAcimaDoRodape = alturaTela - topoRodapeNaTela + distanciaDoRodape;
+                botaoWhatsApp.style.bottom = `${Math.max(25, bottomAcimaDoRodape)}px`;
+            } else {
+                botaoWhatsApp.style.bottom = "25px";
+            }
+
             botaoWhatsApp.style.removeProperty("opacity");
             botaoWhatsApp.style.removeProperty("visibility");
         }
