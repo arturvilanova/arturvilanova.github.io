@@ -354,7 +354,7 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            margin-top: 25px;
+            margin-top: 34px;
         }
 
         .bolinha-carrossel {
@@ -399,11 +399,24 @@
             width: min(100%, 1250px);
             max-width: 1250px;
             font-size: clamp(4.5rem, 7.2vw, 7.5rem);
-            line-height: .95;
+            line-height: 1.04;
             color: var(--cor-titulo-principal);
             -webkit-text-stroke: 9px var(--cor-contorno-titulo);
             paint-order: stroke fill;
             text-shadow: 0 5px 10px rgba(0, 0, 0, .12);
+        }
+
+
+        .titulo-principal .palavra-roupa {
+            color: #0757B9;
+        }
+
+        .titulo-principal .palavra-louca {
+            color: #7B3FE4;
+        }
+
+        .titulo-principal .palavra-casa {
+            color: #00A877;
         }
 
 
@@ -421,6 +434,7 @@
         }
 
         .info-produto p {
+            margin-top: 12px;
             margin-bottom: 0;
         }
 
@@ -558,7 +572,7 @@
             .titulo-principal {
                 width: 100%;
                 font-size: clamp(3.3rem, 12vw, 5rem);
-                line-height: .98;
+                line-height: 1.04;
                 -webkit-text-stroke: 6px var(--cor-contorno-titulo);
             }
 
@@ -592,7 +606,7 @@
 
             .indicadores-carrossel {
                 gap: 13px;
-                margin-top: 20px;
+                margin-top: 28px;
             }
 
             .bolinha-carrossel {
@@ -639,7 +653,7 @@
     <!-- 1. TOPO -->
     <section class="bloco-topo">
         <h1 class="titulo-principal">
-            Roupa, louça, casa,<br>
+            <span class="palavra-roupa">Roupa</span>, <span class="palavra-louca">louça</span>, <span class="palavra-casa">casa</span>,<br>
             tudo muito limpo e cheiroso!
         </h1>
 
