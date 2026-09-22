@@ -295,7 +295,7 @@
             flex: 0 0 auto;
             touch-action: pan-y;
             min-height: max(0px, calc(100vh - 300px));
-            padding: 35px 20px 45px;
+            padding: 55px 20px 55px;
             background: #FFF;
             color: var(--cor-texto-escuro);
 
@@ -304,6 +304,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+        }
+
+        .info-produto > h1 {
+            margin: 0 0 30px;
         }
 
         .carrossel-produto {
@@ -324,7 +328,7 @@
             position: relative;
             width: 100%;
             max-width: 360px;
-            min-height: 0;
+            min-height: 150px;
             overflow: hidden;
             transition: height .28s ease;
         }
@@ -354,7 +358,7 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            margin-top: 34px;
+            margin-top: 38px;
         }
 
         .bolinha-carrossel {
@@ -408,7 +412,7 @@
 
 
         .titulo-principal .palavra-roupa {
-            color: #0757B9;
+            color: #F26A21;
         }
 
         .titulo-principal .palavra-louca {
@@ -597,16 +601,21 @@
 
             .info-produto {
                 min-height: max(0px, calc(100vh - 75vw));
-                padding: 30px 20px 42px;
+                padding: 45px 20px 48px;
+            }
+
+            .info-produto > h1 {
+                margin-bottom: 24px;
             }
 
             .carrossel-textos {
                 max-width: 340px;
+                min-height: 150px;
             }
 
             .indicadores-carrossel {
                 gap: 13px;
-                margin-top: 28px;
+                margin-top: 34px;
             }
 
             .bolinha-carrossel {
@@ -1227,17 +1236,47 @@
                 let bloqueadoDuranteTransicao = false;
                 const duracaoSaida = 200;
 
+                function medirAlturaTexto(texto) {
+                    const estilos = {
+                        position: texto.style.position,
+                        visibility: texto.style.visibility,
+                        opacity: texto.style.opacity,
+                        transform: texto.style.transform,
+                        height: texto.style.height
+                    };
+
+                    texto.style.position = "absolute";
+                    texto.style.visibility = "hidden";
+                    texto.style.opacity = "1";
+                    texto.style.transform = "none";
+                    texto.style.height = "auto";
+
+                    const altura = Math.ceil(texto.getBoundingClientRect().height);
+
+                    texto.style.position = estilos.position;
+                    texto.style.visibility = estilos.visibility;
+                    texto.style.opacity = estilos.opacity;
+                    texto.style.transform = estilos.transform;
+                    texto.style.height = estilos.height;
+
+                    return altura;
+                }
+
                 function ajustarAltura() {
+                    const caixaTextos = carrossel.querySelector(".carrossel-textos");
+                    if (!caixaTextos || !textos.length) return;
+
                     const alturaNecessaria = Math.max.apply(
                         null,
-                        textos.map(function (texto) {
-                            return texto.scrollHeight;
-                        })
+                        textos.map(medirAlturaTexto)
                     );
 
-                    const alturaAtual = textos[indiceAtual]?.scrollHeight || 0;
-                    carrossel.querySelector(".carrossel-textos").style.height =
-                        Math.max(alturaNecessaria, alturaAtual) + "px";
+                    const alturaMinima = parseFloat(
+                        getComputedStyle(caixaTextos).minHeight
+                    ) || 0;
+
+                    caixaTextos.style.height =
+                        Math.max(alturaNecessaria, alturaMinima) + "px";
                 }
 
                 function atualizarIndicadores() {
@@ -1322,6 +1361,10 @@
 
                 atualizarIndicadores();
                 ajustarAltura();
+
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(ajustarAltura);
+                }
 
                 window.addEventListener("resize", ajustarAltura);
             });
