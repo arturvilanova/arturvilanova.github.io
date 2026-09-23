@@ -240,19 +240,27 @@
             z-index: 3;
             width: 55px;
             height: 55px;
+            min-width: 55px;
+            min-height: 55px;
             padding: 0;
             border: 0;
             background: transparent;
             cursor: pointer;
+            overflow: visible;
+            appearance: none;
+            -webkit-appearance: none;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .15));
         }
 
         .icone-video {
             position: absolute;
             inset: 0;
-            width: 100%;
-            height: 100%;
+            width: 55px;
+            height: 55px;
+            max-width: 55px;
+            max-height: 55px;
             display: block;
+            overflow: visible;
         }
 
         .icone-video circle {
@@ -286,44 +294,40 @@
            10. AVISO TEMPORÁRIO DOS VÍDEOS
            ========================================================= */
 
-        .aviso-video {
-            position: fixed;
-            inset: 0;
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, .18);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity .35s ease, visibility 0s linear .35s;
-        }
-
-        .aviso-video.mostrar {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity .35s ease;
-        }
-
-        .aviso-video-mensagem {
-            padding: 12px 20px;
-            border-radius: 8px;
+        .imagem-produto.mostrar-aviso-video::before {
+            content: "O vídeo estará disponível em breve";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 4;
+            width: max-content;
+            max-width: calc(100% - 40px);
+            padding: 8px 14px;
+            border-radius: 7px;
             background: #000;
             color: #FFF;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: .9rem;
+            font-size: .78rem;
             font-weight: 500;
-            line-height: 1.35;
+            line-height: 1.3;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
-            transform: translateY(5px);
-            transition: transform .35s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: avisoVideoEntradaSaida 2.2s ease both;
         }
 
-        .aviso-video.mostrar .aviso-video-mensagem {
-            transform: translateY(0);
+        @keyframes avisoVideoEntradaSaida {
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            15%,
+            82% {
+                opacity: 1;
+            }
         }
 
 
@@ -604,12 +608,6 @@
             visibility: visible;
         }
 
-        .whatsapp-flutuante.ocultar-rodape {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
         .whatsapp-flutuante img {
             width: 36px;
             height: 36px;
@@ -679,6 +677,15 @@
                 bottom: 18px;
                 width: 50px;
                 height: 50px;
+                min-width: 50px;
+                min-height: 50px;
+            }
+
+            .icone-video {
+                width: 50px;
+                height: 50px;
+                max-width: 50px;
+                max-height: 50px;
             }
 
             .bloco-rodape {
@@ -706,6 +713,16 @@
             }
         }
     </style>
+
+    <script>
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+        window.addEventListener("pageshow", function () {
+            window.scrollTo(0, 0);
+        });
+    </script>
 </head>
 
 <body>
@@ -745,11 +762,11 @@
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M38 25 L72 50 L38 75 Z"></path>
                 </svg>
                 <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
                 </svg>
             </button>
@@ -805,11 +822,11 @@
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M38 25 L72 50 L38 75 Z"></path>
                 </svg>
                 <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
                 </svg>
             </button>
@@ -864,11 +881,11 @@
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M38 25 L72 50 L38 75 Z"></path>
                 </svg>
                 <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
                 </svg>
             </button>
@@ -923,11 +940,11 @@
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M38 25 L72 50 L38 75 Z"></path>
                 </svg>
                 <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
                 </svg>
             </button>
@@ -982,11 +999,11 @@
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M38 25 L72 50 L38 75 Z"></path>
                 </svg>
                 <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
                 </svg>
             </button>
@@ -1040,11 +1057,11 @@
 
             <button class="botao-video" type="button" aria-label="Reproduzir vídeo" aria-pressed="false">
                 <svg class="icone-video icone-video-play" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M38 25 L72 50 L38 75 Z"></path>
                 </svg>
                 <svg class="icone-video icone-video-pause" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle cx="50" cy="50" r="50"></circle>
+                    <circle cx="50" cy="50" r="48"></circle>
                     <path d="M35 28 H46 V72 H35 Z M54 28 H65 V72 H54 Z"></path>
                 </svg>
             </button>
@@ -1103,11 +1120,6 @@
     </footer>
 
 
-    <!-- AVISO TEMPORÁRIO DOS VÍDEOS -->
-    <div class="aviso-video" id="aviso-video" role="status" aria-live="polite" aria-hidden="true">
-        <div class="aviso-video-mensagem">O vídeo estará disponível em breve</div>
-    </div>
-
     <!-- BOTÃO DO WHATSAPP -->
     <a
         href="https://wa.me/5589994058332"
@@ -1134,39 +1146,79 @@
         const blocoSabao = document.querySelector("#secao-sabao");
         const rodape = document.querySelector("#secao-rodape");
 
-        function atualizarBotaoWhatsApp() {
+        function mostrarWhatsAppNormal() {
+            if (!botaoWhatsApp) return;
+
+            botaoWhatsApp.classList.add("mostrar");
+            botaoWhatsApp.style.position = "fixed";
+            botaoWhatsApp.style.top = "auto";
+            botaoWhatsApp.style.removeProperty("bottom");
+        }
+
+        function fixarWhatsAppAcimaDoRodape() {
+            if (!botaoWhatsApp || !rodape) return;
+
+            const alturaBotao = botaoWhatsApp.offsetHeight || 65;
+            const distanciaDoRodape = 20;
+
+            botaoWhatsApp.classList.add("mostrar");
+            botaoWhatsApp.style.position = "absolute";
+            botaoWhatsApp.style.top =
+                `${rodape.offsetTop - alturaBotao - distanciaDoRodape}px`;
+            botaoWhatsApp.style.bottom = "auto";
+        }
+
+        function atualizarVisibilidadeWhatsApp() {
             if (!botaoWhatsApp || !blocoSabao) return;
 
-            const scrollAtual = window.scrollY;
             const inicioSabao = blocoSabao.offsetTop;
+            const deveMostrar = window.scrollY >= inicioSabao - 300;
 
-            /*
-             * O botão permanece FIXO durante toda a navegação.
-             * Não mudamos position/top/bottom durante o scroll.
-             * Isso elimina o salto que acontecia em movimentos rápidos.
-             */
-            botaoWhatsApp.classList.toggle(
-                "mostrar",
-                scrollAtual >= inicioSabao - 300
-            );
+            botaoWhatsApp.classList.toggle("mostrar", deveMostrar);
+
+            if (!deveMostrar) {
+                botaoWhatsApp.style.position = "fixed";
+                botaoWhatsApp.style.top = "auto";
+                botaoWhatsApp.style.removeProperty("bottom");
+            }
         }
 
-        window.addEventListener("scroll", atualizarBotaoWhatsApp, { passive: true });
-        window.addEventListener("resize", atualizarBotaoWhatsApp);
+        if (botaoWhatsApp && blocoSabao) {
+            window.addEventListener("scroll", atualizarVisibilidadeWhatsApp, { passive: true });
+            window.addEventListener("resize", function () {
+                if (botaoWhatsApp.style.position === "absolute" && rodape) {
+                    fixarWhatsAppAcimaDoRodape();
+                } else {
+                    atualizarVisibilidadeWhatsApp();
+                }
+            });
 
-        if (rodape && "IntersectionObserver" in window) {
-            const observadorRodape = new IntersectionObserver(
-                function (entradas) {
-                    const rodapeVisivel = entradas[0].isIntersecting;
-                    botaoWhatsApp.classList.toggle("ocultar-rodape", rodapeVisivel);
-                },
-                { threshold: 0.01 }
-            );
+            if (rodape && "IntersectionObserver" in window) {
+                const observadorRodape = new IntersectionObserver(
+                    function (entradas) {
+                        const rodapeVisivel = entradas[0].isIntersecting;
+                        const deveMostrar = window.scrollY >= blocoSabao.offsetTop - 300;
 
-            observadorRodape.observe(rodape);
+                        if (!deveMostrar) {
+                            mostrarWhatsAppNormal();
+                            botaoWhatsApp.classList.remove("mostrar");
+                            return;
+                        }
+
+                        if (rodapeVisivel) {
+                            fixarWhatsAppAcimaDoRodape();
+                        } else {
+                            mostrarWhatsAppNormal();
+                        }
+                    },
+                    { threshold: 0.01 }
+                );
+
+                observadorRodape.observe(rodape);
+            }
+
+            atualizarVisibilidadeWhatsApp();
         }
-
-        atualizarBotaoWhatsApp();
     </script>
 
     <!-- CONTROLE DOS VÍDEOS DOS PRODUTOS -->
@@ -1180,19 +1232,18 @@
              * Quando os vídeos reais estiverem prontos, basta trocar true por false.
              */
             const MODO_AVISO_VIDEO = true;
-            const avisoVideo = document.querySelector("#aviso-video");
-            let timerAvisoVideo;
+            function mostrarAvisoVideo(area) {
+                if (!area) return;
 
-            function mostrarAvisoVideo() {
-                if (!avisoVideo) return;
+                clearTimeout(area._timerAvisoVideo);
+                area.classList.remove("mostrar-aviso-video");
 
-                clearTimeout(timerAvisoVideo);
-                avisoVideo.classList.add("mostrar");
-                avisoVideo.setAttribute("aria-hidden", "false");
+                void area.offsetWidth;
 
-                timerAvisoVideo = setTimeout(function () {
-                    avisoVideo.classList.remove("mostrar");
-                    avisoVideo.setAttribute("aria-hidden", "true");
+                area.classList.add("mostrar-aviso-video");
+
+                area._timerAvisoVideo = setTimeout(function () {
+                    area.classList.remove("mostrar-aviso-video");
                 }, 2200);
             }
 
@@ -1224,7 +1275,7 @@
                     evento.stopPropagation();
 
                     if (MODO_AVISO_VIDEO) {
-                        mostrarAvisoVideo();
+                        mostrarAvisoVideo(area);
                         return;
                     }
 
