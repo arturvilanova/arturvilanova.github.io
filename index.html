@@ -34,7 +34,7 @@
 
             --cor-texto-escuro: #222;
             --cor-texto-claro: #FFF;
-            --cor-titulo-principal: #0F2C59;
+            --cor-titulo-principal: #0B3B73;
             --cor-contorno-titulo: #FFF;
             --cor-whatsapp: #25D366;
 
@@ -283,12 +283,57 @@
 
 
         /* =========================================================
-           10. ÍCONE DE VÍDEO
+           10. AVISO TEMPORÁRIO DOS VÍDEOS
+           ========================================================= */
+
+        .aviso-video {
+            position: fixed;
+            inset: 0;
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, .18);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .35s ease, visibility 0s linear .35s;
+        }
+
+        .aviso-video.mostrar {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .35s ease;
+        }
+
+        .aviso-video-mensagem {
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: #000;
+            color: #FFF;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: .9rem;
+            font-weight: 500;
+            line-height: 1.35;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+            transform: translateY(5px);
+            transition: transform .35s ease;
+        }
+
+        .aviso-video.mostrar .aviso-video-mensagem {
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           11. ÍCONE DE VÍDEO
            ========================================================= */
 
 
         /* =========================================================
-           11. INFORMAÇÕES DOS PRODUTOS
+           12. INFORMAÇÕES DOS PRODUTOS
            ========================================================= */
 
         .info-produto {
@@ -412,15 +457,15 @@
 
 
         .titulo-principal .palavra-roupa {
-            color: #2E5A88;
+            color: #356A9A;
         }
 
         .titulo-principal .palavra-louca {
-            color: #0D6E6B;
+            color: #2F7890;
         }
 
         .titulo-principal .palavra-casa {
-            color: #5A3E85;
+            color: #4B628F;
         }
 
 
@@ -557,6 +602,12 @@
         .whatsapp-flutuante.mostrar {
             opacity: 1;
             visibility: visible;
+        }
+
+        .whatsapp-flutuante.ocultar-rodape {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .whatsapp-flutuante img {
@@ -1042,7 +1093,7 @@
 
             <p class="rodape-proprietario">
                 Proprietário: <a
-                    href="https://www.instagram.com/artur.vilanova/"
+                    href="https://wa.me/5589994058332"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="link-instagram"
@@ -1051,6 +1102,11 @@
         </div>
     </footer>
 
+
+    <!-- AVISO TEMPORÁRIO DOS VÍDEOS -->
+    <div class="aviso-video" id="aviso-video" role="status" aria-live="polite" aria-hidden="true">
+        <div class="aviso-video-mensagem">O vídeo estará disponível em breve</div>
+    </div>
 
     <!-- BOTÃO DO WHATSAPP -->
     <a
@@ -1078,69 +1134,37 @@
         const blocoSabao = document.querySelector("#secao-sabao");
         const rodape = document.querySelector("#secao-rodape");
 
-        let whatsappPresoNoRodape = false;
-
         function atualizarBotaoWhatsApp() {
-            if (!botaoWhatsApp || !blocoSabao || !rodape) return;
+            if (!botaoWhatsApp || !blocoSabao) return;
 
             const scrollAtual = window.scrollY;
             const inicioSabao = blocoSabao.offsetTop;
-            const alturaTela = window.innerHeight;
-            const topoRodapeNaTela = rodape.getBoundingClientRect().top;
 
+            /*
+             * O botão permanece FIXO durante toda a navegação.
+             * Não mudamos position/top/bottom durante o scroll.
+             * Isso elimina o salto que acontecia em movimentos rápidos.
+             */
             botaoWhatsApp.classList.toggle(
                 "mostrar",
                 scrollAtual >= inicioSabao - 300
             );
-
-            /*
-             * O botão usa apenas dois estados.
-             *
-             * 1. Durante a navegação: fica FIXO no canto inferior direito.
-             * 2. Quando o rodapé chega à tela: vira ABSOLUTO e é colocado
-             *    uma única vez acima do rodapé. Assim ele acompanha o rodapé
-             *    sem recalcular sua posição a cada movimento do dedo.
-             *
-             * Isso evita o efeito de "tentativa de reposicionamento" que
-             * acontecia quando o bottom era recalculado continuamente.
-             */
-            const rodapeEntrouNaTela = topoRodapeNaTela <= alturaTela;
-
-            if (rodapeEntrouNaTela && !whatsappPresoNoRodape) {
-                whatsappPresoNoRodape = true;
-
-                const alturaBotao = botaoWhatsApp.offsetHeight || 65;
-                const distanciaDoRodape = 20;
-
-                botaoWhatsApp.style.position = "absolute";
-                botaoWhatsApp.style.top = `${rodape.offsetTop - alturaBotao - distanciaDoRodape}px`;
-                botaoWhatsApp.style.bottom = "auto";
-            }
-
-            if (!rodapeEntrouNaTela && whatsappPresoNoRodape) {
-                whatsappPresoNoRodape = false;
-
-                botaoWhatsApp.style.position = "fixed";
-                botaoWhatsApp.style.top = "auto";
-                botaoWhatsApp.style.bottom = "25px";
-            }
-
-            /*
-             * Se a tela mudar de tamanho enquanto o botão estiver preso,
-             * atualiza somente a posição absoluta do rodapé.
-             */
-            if (whatsappPresoNoRodape) {
-                const alturaBotao = botaoWhatsApp.offsetHeight || 65;
-                const distanciaDoRodape = 20;
-                botaoWhatsApp.style.top = `${rodape.offsetTop - alturaBotao - distanciaDoRodape}px`;
-            }
-
-            botaoWhatsApp.style.removeProperty("opacity");
-            botaoWhatsApp.style.removeProperty("visibility");
         }
 
         window.addEventListener("scroll", atualizarBotaoWhatsApp, { passive: true });
         window.addEventListener("resize", atualizarBotaoWhatsApp);
+
+        if (rodape && "IntersectionObserver" in window) {
+            const observadorRodape = new IntersectionObserver(
+                function (entradas) {
+                    const rodapeVisivel = entradas[0].isIntersecting;
+                    botaoWhatsApp.classList.toggle("ocultar-rodape", rodapeVisivel);
+                },
+                { threshold: 0.01 }
+            );
+
+            observadorRodape.observe(rodape);
+        }
 
         atualizarBotaoWhatsApp();
     </script>
@@ -1148,6 +1172,30 @@
     <!-- CONTROLE DOS VÍDEOS DOS PRODUTOS -->
     <script>
         (function () {
+            /*
+             * MODO TEMPORÁRIO:
+             * true  = mostra a mensagem e não inicia o vídeo.
+             * false = libera novamente o funcionamento normal dos vídeos.
+             *
+             * Quando os vídeos reais estiverem prontos, basta trocar true por false.
+             */
+            const MODO_AVISO_VIDEO = true;
+            const avisoVideo = document.querySelector("#aviso-video");
+            let timerAvisoVideo;
+
+            function mostrarAvisoVideo() {
+                if (!avisoVideo) return;
+
+                clearTimeout(timerAvisoVideo);
+                avisoVideo.classList.add("mostrar");
+                avisoVideo.setAttribute("aria-hidden", "false");
+
+                timerAvisoVideo = setTimeout(function () {
+                    avisoVideo.classList.remove("mostrar");
+                    avisoVideo.setAttribute("aria-hidden", "true");
+                }, 2200);
+            }
+
             const areasDeVideo = document.querySelectorAll(".imagem-produto");
 
             areasDeVideo.forEach(function (area) {
@@ -1174,6 +1222,11 @@
                 botao.addEventListener("click", async function (evento) {
                     evento.preventDefault();
                     evento.stopPropagation();
+
+                    if (MODO_AVISO_VIDEO) {
+                        mostrarAvisoVideo();
+                        return;
+                    }
 
                     if (video.paused || video.ended) {
                         area.classList.add("iniciando-video");
